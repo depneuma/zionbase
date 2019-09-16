@@ -112,15 +112,20 @@ else
 	<div class="container">
         
         
-         <div class="col-md-3  followlist m-bottom">
+         <div class="col-md-4  followlist m-bottom">
         <h4 class="h4 white"><?php echo translate_footer( 97, $lang);?></h4>
         <div class="clear height20"></div>
         <ul>
-        <?php if(!empty($setts[0]->site_facebook)){?><li><a href="<?php echo $setts[0]->site_facebook;?>" target="_blank" class="white_ash"><img src="<?php echo $url;?>/local/images/facebook.png" border="0" alt="facebook" /></a></li><?php } ?>
-        <?php if(!empty($setts[0]->site_twitter)){?><li><a href="<?php echo $setts[0]->site_twitter;?>" target="_blank" class="white_ash"><img src="<?php echo $url;?>/local/images/twitter.png" border="0" alt="twitter" /></a></li><?php } ?>
+        <!-- <?php if(!empty($setts[0]->site_facebook)){?><li><a href="<?php echo $setts[0]->site_facebook;?>" target="_blank" class="white_ash"><img src="<?php echo $url;?>/local/images/facebook.png" border="0" alt="facebook" /></a></li><?php } ?> -->
+        <?php if(!empty($setts[0]->site_facebook)){?>
+        	<li>
+        		<button class="btn btn-block btn-sm btn-info" href="<?php echo $setts[0]->site_facebook;?>" target="_blank" class="white_ash">FACEBOOK</button>
+        	</li>
+        <?php } ?>
+        <!-- <?php if(!empty($setts[0]->site_twitter)){?><li><a href="<?php echo $setts[0]->site_twitter;?>" target="_blank" class="white_ash"><img src="<?php echo $url;?>/local/images/twitter.png" border="0" alt="twitter" /></a></li><?php } ?>
         <?php if(!empty($setts[0]->site_gplus)){?><li><a href="<?php echo $setts[0]->site_gplus;?>" target="_blank" class="white_ash"><img src="<?php echo $url;?>/local/images/gplus.png" border="0" alt="gplus" /></a></li><?php } ?>
         <?php if(!empty($setts[0]->site_pinterest)){?><li><a href="<?php echo $setts[0]->site_pinterest;?>" target="_blank" class="white_ash"><img src="<?php echo $url;?>/local/images/pinterest.png" border="0" alt="pinterest" /></a></li><?php } ?>
-       <?php if(!empty($setts[0]->site_instagram)){?><li><a href="<?php echo $setts[0]->site_instagram;?>" target="_blank" class="white_ash"><img src="<?php echo $url;?>/local/images/instagram.png" border="0" alt="instagram" /></a></li><?php } ?>
+       <?php if(!empty($setts[0]->site_instagram)){?><li><a href="<?php echo $setts[0]->site_instagram;?>" target="_blank" class="white_ash"><img src="<?php echo $url;?>/local/images/instagram.png" border="0" alt="instagram" /></a></li><?php } ?> -->
        
         </ul>
         </div>
@@ -128,7 +133,7 @@ else
         
         
         
-        <div class="col-md-3 list m-bottom">
+        <!--<div class="col-md-3 list m-bottom">
         <h4 class="h4 white"><?php echo translate_footer( 100, $lang);?></h4>
         <div class="clear height20"></div>
         <ul>
@@ -154,11 +159,11 @@ else
         <?php } ?>
         </ul>
         
-        </div>
+        </div>-->
         
         
         
-        <div class="col-md-3 list m-bottom">
+        <div class="col-md-4 list m-bottom">
         <h4 class="h4 white"><?php echo translate_footer( 103, $lang);?></h4>
         <div class="clear height20"></div>
         <ul>
@@ -184,7 +189,7 @@ else
        
         
         
-        <div class="col-md-3 m-bottom">
+        <div class="col-md-4 m-bottom">
          
 		 <div>
 		 <?php if(!empty($setts[0]->site_logo)){?>

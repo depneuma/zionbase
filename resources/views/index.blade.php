@@ -248,7 +248,7 @@ if(!empty(Cookie::get('lang'))){ $lang = Cookie::get('lang'); } else { if(!empty
     
     
     
-    <?php /* shop section */?>
+    <!-- <?php /* shop section */?>
     
     
     <section class="container">
@@ -352,7 +352,7 @@ if(!empty(Cookie::get('lang'))){ $lang = Cookie::get('lang'); } else { if(!empty
     
     
     
-    <?php /*      end shop section */ ?>
+    <?php /*      end shop section */ ?> -->
     
     
     

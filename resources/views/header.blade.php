@@ -294,10 +294,10 @@ if(Auth::check()) {
                            
                              
                              
-                             
+                             <!-- MY ACCOUNT SECTION -->
                               
                               
-                             <?php /* ?> <?php if(Auth::check()) { ?>
+                             <!-- <?php /* ?> <?php if(Auth::check()) { ?>
                                <li class="<?php echo $active_dashboard;?>"><a href="<?php echo $url;?>/dashboard">My Account</a></li>
                                   <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout</a></li>
                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -330,9 +330,11 @@ if(Auth::check()) {
 									<li><a href="<?php echo $url;?>/register"><?php echo translate( 34, $lang);?></a></li>
                                     <?php } ?>
                                 </ul>
-                             </li> 
+                             </li> -->
                             
-                             <li class="submenu"><?php if(!empty($language_single_cnt)){?>
+
+                            <!-- LANUGAGE SECTION -->
+                             <!-- <li class="submenu"><?php if(!empty($language_single_cnt)){?>
                              <?php if($lang == "en"){?>
                              <a href="<?php echo $url;?>/lang/<?php echo $language_single[0]->lang_code;?>"> <img src="<?php echo $url; ?>/local/images/post/<?php echo $language_single[0]->lang_flag;?>" style="max-width:24px; max-height:24px; top:5px; position:relative;"> <span style="position:relative;top:-3px;"><?php echo $language_single[0]->lang_code;?></span></a><?php } else { 
 							 
@@ -362,11 +364,13 @@ if(Auth::check()) {
                                  <li><a href="<?php echo $url;?>/lang/<?php echo $languages->lang_code;?>"><img src="<?php echo $url; ?>/local/images/post/<?php echo $languages->lang_flag;?>" style="max-width:24px; max-height:24px; top:5px; position:relative;"> <span style="position:relative;top:-3px;"><?php echo $languages->lang_code;?></span> </a></li>
                                  <?php } } ?>
                                  </ul>
-                             </li>
-                             <li class="<?php echo $active_donate;?>"><a href="<?php echo $url;?>/donate-now" class="white_ash donatebtn"><?php echo translate( 37, $lang);?></a></li> 
+                             </li> -->
+
+                             <!-- DONATE & SHOPPING CART -->
+                             <!-- <li class="<?php echo $active_donate;?>"><a href="<?php echo $url;?>/donate-now" class="white_ash donatebtn"><?php echo translate( 37, $lang);?></a></li> 
                              <?php if($setts[0]->site_shop=="on"){?>
                              <li><a href="<?php echo $url;?>/cart" id="cart"><i class="fa fa-shopping-cart"></i> <?php echo translate( 397, $lang);?> <span class="badge"><?php echo $cart_views_count;?></span></a></li>
-                             <?php } ?>
+                             <?php } ?> -->
                              
 						</ul>
 					</nav>

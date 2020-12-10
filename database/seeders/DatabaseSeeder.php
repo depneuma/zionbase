@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +13,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(SettingSeeder::class);
+        // Adding an admin user
+        $user = \App\Models\User::factory()
+            ->count(1)
+            ->create([
+                'email' => 'admin@admin.com',
+                'password' => \Hash::make('admin'),
+            ]);
+        $this->call(PermissionsSeeder::class);
+
         $this->call(UserSeeder::class);
+        $this->call(EventSeeder::class);
+        $this->call(BlogSeeder::class);
+        $this->call(SermonSeeder::class);
     }
 }

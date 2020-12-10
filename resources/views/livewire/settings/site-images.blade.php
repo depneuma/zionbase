@@ -1,5 +1,4 @@
 <div class="card">
-    @include('partials.flash')
     <div class="card-body">
         <p>
             {{ __('Change Site Images') }}

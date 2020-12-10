@@ -4,8 +4,6 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Support\Str;
-use Vinkla\Hashids\Facades\Hashids;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
@@ -25,15 +23,12 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Andafa Darling',
-            'username' => 'KS'.Hashids::encode(1),
-            'email' => 'kryptoshares@gmail.com',
+            'title' => $this->faker->sentence(10),
+            'name' => $this->faker->name,
+            'email' => $this->faker->email,
             'email_verified_at' => now(),
-            'status' => 1,
-            'password' => Hash::make('admin'),
+            'password' => \Hash::make('password'),
             'remember_token' => Str::random(10),
-            'ref_id' => 1,
-            'role' => 'admin',
         ];
     }
 }

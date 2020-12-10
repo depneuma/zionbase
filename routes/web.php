@@ -129,3 +129,11 @@ Route::prefix('/')
             'destroy',
         ])->name('sermons.destroy');
     });
+
+Route::view('home', 'home')
+	->name('home')
+	->middleware(['auth']);
+
+Route::view('profile', 'profile.edit')
+	->name('profile.edit')
+	->middleware(['auth']);

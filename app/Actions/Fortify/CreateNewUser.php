@@ -3,11 +3,9 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
-use Illuminate\Validation\Rule;
-use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -33,20 +31,11 @@ class CreateNewUser implements CreatesNewUsers
             ],
             'password' => $this->passwordRules(),
         ])->validate();
-        
-        $cookie = substr(Cookie::get('referral'), 2);
-        $referrer_id = $cookie ? Hashids::decode($cookie)[0] : 1;
 
-        $user =  User::create([
+        return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
-            'ref_id' => $referrer_id,
             'password' => Hash::make($input['password']),
         ]);
-
-        $user->username = 'KS'.Hashids::encode($user->id);
-        $user->save();
-
-        return $user;
     }
 }

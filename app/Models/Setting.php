@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\Searchable;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,18 +10,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Setting extends Model
 {
     use HasFactory;
-    
-    /**
-     * @var string
-     */
-    protected $table = 'settings';
+    use Searchable;
 
-    /**
-     * @var array
-     */
     protected $fillable = ['key', 'value'];
 
-    /**
+    protected $searchableFields = ['*'];
+
+     /**
      * @param $key
      */
     public static function get($key)

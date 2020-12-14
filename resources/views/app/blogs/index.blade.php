@@ -52,9 +52,9 @@
                     <thead>
                         <tr>
                             <th>@lang('crud.blogs.inputs.user_id')</th>
-                            <th>@lang('crud.blogs.inputs.image')</th>
                             <th>@lang('crud.blogs.inputs.title')</th>
                             <th>@lang('crud.blogs.inputs.body')</th>
+                            <th>@lang('crud.blogs.inputs.image')</th>
                             <th class="text-center">
                                 @lang('crud.common.actions')
                             </th>
@@ -64,14 +64,14 @@
                         @forelse($blogs as $blog)
                         <tr>
                             <td>{{ optional($blog->author)->name ?? '-' }}</td>
+                            <td>{{ $blog->title ?? '-' }}</td>
+                            <td>{{ $blog->body ?? '-' }}</td>
                             <td>
                                 <img
                                     src="{{ $blog->image ? \Storage::url($blog->image) : '' }}"
                                     style="object-fit: cover; width: 50px; height: 50px; border: 1px solid #ccc;"
                                 />
                             </td>
-                            <td>{{ $blog->title ?? '-' }}</td>
-                            <td>{{ $blog->body ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">
                                 <div
                                     role="group"

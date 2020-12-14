@@ -25,9 +25,9 @@ class BlogStoreRequest extends FormRequest
     {
         return [
             'user_id' => ['required', 'exists:users,id'],
-            'image' => ['required', 'file'],
             'title' => ['required', 'max:255', 'string'],
             'body' => ['required', 'max:255', 'string'],
+            'image' => ['required', 'file', 'max:2000', 'mimes:jpg,jpeg,png'],
         ];
     }
 }

@@ -24,21 +24,21 @@ class EventStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'rsvp_three_id' => ['nullable', 'max:255'],
-            'rsvp_two_id' => ['nullable', 'max:255'],
+            'rsvp_one_id' => ['required', 'exists:users,id'],
+            'rsvp_two_id' => ['nullable', 'exists:users,id'],
+            'rsvp_three_id' => ['nullable', 'exists:users,id'],
             'cover' => [
-                'nullable',
+                'required',
                 'max:255',
-                'file',
+                'string',
                 'mimes:jpg,jpeg,png',
                 'max:2000',
             ],
-            'rsvp_one_id' => ['required', 'exists:users,id'],
             'title' => ['required', 'max:255', 'string'],
             'description' => ['required', 'max:255', 'string'],
-            'venue' => ['required', 'max:255', 'string'],
             'schedule' => ['required', 'max:255', 'string'],
-            'time' => ['required', 'date_format:H:i:s'],
+            'venue' => ['required', 'max:255', 'string'],
+            'date_time' => ['required', 'date', 'date'],
         ];
     }
 }

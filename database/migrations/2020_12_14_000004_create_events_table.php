@@ -17,13 +17,13 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
-            $table->time('time');
+            $table->timestamp('date_time');
+            $table->text('schedule');
             $table->string('venue');
+            $table->string('cover')->default('covers/default.jpg');
             $table->unsignedBigInteger('rsvp_one_id');
             $table->unsignedBigInteger('rsvp_two_id')->nullable();
             $table->unsignedBigInteger('rsvp_three_id')->nullable();
-            $table->string('cover')->nullable();
-            $table->text('schedule');
 
             $table->timestamps();
         });

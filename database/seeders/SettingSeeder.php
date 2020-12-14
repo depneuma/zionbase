@@ -18,80 +18,27 @@ class SettingSeeder extends Seeder
         */
         [
             'key'                       =>  'domain_name',
-            'value'                     =>  'KryptoShares.io',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'seo_meta_title',
-            'value'                     =>  'KryptoShares Investment',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'seo_meta_keywords',
-            'value'                     =>  'kryptoshares, invest in bitcoin, invest in cryptocurrency, cryptocurrency,bitcoin, litecoin, ethereum, stella lumens, ripple, investment',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'seo_meta_description',
-            'value'                     =>  'KryptoShares.io allows you to invest once, and earn dividends for life, in your preferred cryptocurrency.',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'default_email_address',
-            'value'                     =>  'kryptoshares@gmail.com',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'footer_copyright_text',
             'value'                     =>  '',
-        ],
-        /*
-        |--------------------------------------------------------------------------
-        | Payment Settings
-        |--------------------------------------------------------------------------
-        */
-        [
-            'key'                       =>  'investment_amount',
-            'value'                     =>  0.05,
-        ],
-        [
-            'key'                       =>  'total_payouts',
-            'value'                     =>  10,
-        ],
-        [
-            'key'                       =>  'total_payout_cycle',
-            'value'                     =>  14,
-        ],
-        [
-            'key'                       =>  'slot_multiple',
-            'value'                     =>  2,
-        ],
-        [
-            'key'                       =>  'default_ratio',
-            'value'                     =>  25,
-        ],
-        [
-            'key'                       =>  'payment_cycle',
-            'value'                     =>  30,
-        ],
-        [
-            'key'                       =>  'default_currency', // personal
-            'value'                     =>  'XLM',
-        ],
-        [
-            'key'                       =>  'default_source_currency', // to charge all payments
-            'value'                     =>  'USD',
-        ],
-        [
-            'key'                       =>  'default_settlement_currency', // to receive all payments
-            'value'                     =>  'XLM',
-        ],
-        [
-            'key'                       =>  'default_address',
-            'value'                     =>  'GBIUI2UEDJNY7QPRLJSEHHAKHXMR4SMHLVOZPKVSLQZNTBOZ4WQPWQIS',
-        ],
-        [
-            'key'                       =>  'default_bank',
-            'value'                     =>  'GTBank',
-        ],
-        [
-            'key'                       =>  'default_acc_number',
-            'value'                     =>  '0140007166',
         ],
         /*
         |--------------------------------------------------------------------------

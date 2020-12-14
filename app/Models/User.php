@@ -12,13 +12,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory;    
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
+    use HasFactory;
     use Searchable;
 
-    protected $fillable = ['title', 'name', 'email', 'avatar', 'password'];
+    protected $fillable = [
+        'title',
+        'office',
+        'name',
+        'email',
+        'avatar',
+        'password',
+    ];
 
     protected $searchableFields = ['*'];
 
@@ -38,11 +45,6 @@ class User extends Authenticatable
 //         'profile_photo_url',
 //     ];
 
-    public function sermons()
-    {
-        return $this->hasMany(Sermon::class);
-    }
-
     public function blogs()
     {
         return $this->hasMany(Blog::class);
@@ -61,6 +63,11 @@ class User extends Authenticatable
     public function rsvpThreeEvents()
     {
         return $this->hasMany(Event::class, 'rsvp_three_id');
+    }
+
+    public function sermons()
+    {
+        return $this->hasMany(Sermon::class);
     }
 
     public function events()

@@ -5,58 +5,112 @@ namespace App\Http\Controllers;
 use App\Traits\Base;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Requests\SettingStoreRequest;
+use App\Http\Requests\SettingUpdateRequest;
 
 class SettingController extends Controller
 {
-    // use UploadAble;
     use Base;
-    
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function index(Request $request)
     {
-        $setting = new Setting();
-        $this->setPageTitle('Settings', 'Manage Site Settings');
-        return view('settings.edit', compact('setting'));
+        $this->authorize('view-any', Setting::class);
+
+        $search = $request->get('search', '');
+
+        $settings = Setting::search($search)
+            ->latest()
+            ->paginate();
+
+        return view('app.settings.index', compact('settings', 'search'));
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function create(Request $request)
     {
-        // if there is a logo update, then check if the logo is set using the config('settings.site_logo) helper function
-        // if there is a logo delete it and upload the new one and set it.
-        // Same thing for the favicon.
-        if ($request->has('site_logo') && ($request->file('site_logo') instanceof UploadedFile)) {
+        $this->authorize('create', Setting::class);
 
-            if (config('settings.site_logo') != null) {
-                $this->deleteOne(config('settings.site_logo'));
-            }
-            $logo = $this->uploadOne($request->file('site_logo'), 'img');
-            Setting::set('site_logo', $logo);
+        return view('app.settings.create');
+    }
 
-        } elseif ($request->has('site_favicon') && ($request->file('site_favicon') instanceof UploadedFile)) {
+    /**
+     * @param \App\Http\Requests\SettingStoreRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(SettingStoreRequest $request)
+    {
+        $this->authorize('create', Setting::class);
 
-            if (config('settings.site_favicon') != null) {
-                $this->deleteOne(config('settings.site_favicon'));
-            }
-            $favicon = $this->uploadOne($request->file('site_favicon'), 'img');
-            Setting::set('site_favicon', $favicon);
+        $validated = $request->validated();
 
-        } else {
+        $setting = Setting::create($validated);
 
-            $keys = $request->except('_token');
-            // Load all settings values submitted through the form (except the site_logo and site_favicon)
-            // Loop through all the settings keys and set the value to whatever submitted using the form.
-            foreach ($keys as $key => $value)
-            {
-                Setting::set($key, $value);
-            }
-        }
-        return $this->responseRedirectBack('Settings updated successfully.', 'success');
+        return redirect()
+            ->route('settings.edit', $setting)
+            ->withSuccess(__('crud.common.created'));
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Setting $setting
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request, Setting $setting)
+    {
+        $this->authorize('view', $setting);
+
+        return view('app.settings.show', compact('setting'));
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Setting $setting
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request, Setting $setting)
+    {
+        $this->authorize('update', $setting);
+
+        return view('app.settings.edit', compact('setting'));
+    }
+
+    /**
+     * @param \App\Http\Requests\SettingUpdateRequest $request
+     * @param \App\Models\Setting $setting
+     * @return \Illuminate\Http\Response
+     */
+    public function update(SettingUpdateRequest $request, Setting $setting)
+    {
+        $this->authorize('update', $setting);
+
+        $validated = $request->validated();
+
+        $setting->update($validated);
+
+        return redirect()
+            ->route('settings.edit', $setting)
+            ->withSuccess(__('crud.common.saved'));
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Setting $setting
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, Setting $setting)
+    {
+        $this->authorize('delete', $setting);
+
+        $setting->delete();
+
+        return redirect()
+            ->route('settings.index')
+            ->withSuccess(__('crud.common.removed'));
     }
 }

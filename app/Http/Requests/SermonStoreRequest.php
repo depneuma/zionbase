@@ -25,32 +25,20 @@ class SermonStoreRequest extends FormRequest
     {
         return [
             'user_id' => ['required', 'exists:users,id'],
+            'photo' => ['required', 'file'],
             'event_id' => ['nullable', 'exists:events,id'],
-            'cover' => [
-                'required',
-                'max:255',
-                'mimes:jpg,jpeg,png',
-                'file',
-                'max:2000',
-            ],
-            'audio' => [
-                'required',
-                'max:255',
-                'file',
-                'mimetypes:audio/mpeg',
-                'max:20000',
-            ],
-            'video' => [
-                'nullable',
-                'max:255',
-                'file',
-                'mimetypes:video/mp4',
-                'max:20000',
-            ],
-            'pdf' => ['nullable', 'max:255', 'file', 'mimes:pdf', 'max:10000'],
             'title' => ['required', 'max:255', 'string'],
             'description' => ['required', 'max:255', 'string'],
             'price' => ['required', 'in:Free'],
+            'audio' => ['required', 'file', 'max:20000', 'mimes:audio/mpeg'],
+            'video' => ['nullable', 'max:255', 'string'],
+            'pdf' => [
+                'nullable',
+                'max:255',
+                'file',
+                'max:10000',
+                'mimetypes:application/pdf',
+            ],
         ];
     }
 }

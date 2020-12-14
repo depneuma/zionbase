@@ -12,6 +12,22 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
+        <x-inputs.text
+            name="title"
+            label="Title"
+            value="{{ old('title', ($editing ? $blog->title : '')) }}"
+            maxlength="255"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
+        <x-inputs.textarea name="body" label="Body" maxlength="255" required
+            >{{ old('body', ($editing ? $blog->body : '')) }}</x-inputs.textarea
+        >
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
         <div x-data="imageComponentData()">
             <label for="image">Image</label><br />
 
@@ -33,22 +49,6 @@
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-    </x-inputs.group>
-
-    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
-        <x-inputs.text
-            name="title"
-            label="Title"
-            value="{{ old('title', ($editing ? $blog->title : '')) }}"
-            maxlength="255"
-            required
-        ></x-inputs.text>
-    </x-inputs.group>
-
-    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
-        <x-inputs.textarea name="body" label="Body" maxlength="255" required
-            >{{ old('body', ($editing ? $blog->body : '')) }}</x-inputs.textarea
-        >
     </x-inputs.group>
 </div>
 

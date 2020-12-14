@@ -2,14 +2,32 @@
 
 <div class="row">
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
-        <x-inputs.select name="rsvp_three_id" label="Rsvp Three Id">
-            @php $selected = old('rsvp_three_id', ($editing ? $event->rsvp_three_id : '')) @endphp
+        <x-inputs.select name="rsvp_one_id" label="First RSVP" required>
+            @php $selected = old('rsvp_one_id', ($editing ? $event->rsvp_one_id : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
+            @foreach($users as $value => $label)
+            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
         </x-inputs.select>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
-        <x-inputs.select name="rsvp_two_id" label="Rsvp Two Id">
+        <x-inputs.select name="rsvp_two_id" label="Second RSVP (Optional)">
             @php $selected = old('rsvp_two_id', ($editing ? $event->rsvp_two_id : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
+            @foreach($users as $value => $label)
+            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
+        </x-inputs.select>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
+        <x-inputs.select name="rsvp_three_id" label="Thrid RSVP (Optional)">
+            @php $selected = old('rsvp_three_id', ($editing ? $event->rsvp_three_id : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
+            @foreach($users as $value => $label)
+            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
         </x-inputs.select>
     </x-inputs.group>
 
@@ -38,16 +56,6 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
-        <x-inputs.select name="rsvp_one_id" label="First RSVP" required>
-            @php $selected = old('rsvp_one_id', ($editing ? $event->rsvp_one_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
-            @foreach($users as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-            @endforeach
-        </x-inputs.select>
-    </x-inputs.group>
-
-    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
         <x-inputs.text
             name="title"
             label="Title"
@@ -69,16 +77,6 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
-        <x-inputs.text
-            name="venue"
-            label="Venue"
-            value="{{ old('venue', ($editing ? $event->venue : '')) }}"
-            maxlength="255"
-            required
-        ></x-inputs.text>
-    </x-inputs.group>
-
-    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
         <x-inputs.textarea
             name="schedule"
             label="Schedule"
@@ -90,10 +88,20 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
+        <x-inputs.text
+            name="venue"
+            label="Venue"
+            value="{{ old('venue', ($editing ? $event->venue : '')) }}"
+            maxlength="255"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
         <x-inputs.datetime
-            name="time"
-            label="Time"
-            value="{{ old('time', ($editing ? optional($event->time)->format('Y-m-d\TG:i:s') : '')) }}"
+            name="date_time"
+            label="Date Time"
+            value="{{ old('date_time', ($editing ? optional($event->date_time)->format('Y-m-d\TG:i:s') : '')) }}"
             max="255"
             required
         ></x-inputs.datetime>

@@ -25,9 +25,9 @@ class EventFactory extends Factory
         return [
             'title' => $this->faker->sentence(10),
             'description' => $this->faker->sentence(15),
-            'time' => $this->faker->time,
-            'venue' => $this->faker->text(255),
+            'date_time' => $this->faker->dateTime,
             'schedule' => $this->faker->text,
+            'venue' => $this->faker->text(255),
             'rsvp_three_id' => \App\Models\User::factory(),
             'rsvp_two_id' => \App\Models\User::factory(),
             'rsvp_one_id' => \App\Models\User::factory(),

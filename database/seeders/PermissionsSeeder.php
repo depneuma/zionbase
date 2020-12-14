@@ -15,17 +15,23 @@ class PermissionsSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Create default permissions
-        Permission::create(['name' => 'list events']);
-        Permission::create(['name' => 'view events']);
-        Permission::create(['name' => 'create events']);
-        Permission::create(['name' => 'update events']);
-        Permission::create(['name' => 'delete events']);
-
         Permission::create(['name' => 'list blogs']);
         Permission::create(['name' => 'view blogs']);
         Permission::create(['name' => 'create blogs']);
         Permission::create(['name' => 'update blogs']);
         Permission::create(['name' => 'delete blogs']);
+
+        Permission::create(['name' => 'list settings']);
+        Permission::create(['name' => 'view settings']);
+        Permission::create(['name' => 'create settings']);
+        Permission::create(['name' => 'update settings']);
+        Permission::create(['name' => 'delete settings']);
+
+        Permission::create(['name' => 'list events']);
+        Permission::create(['name' => 'view events']);
+        Permission::create(['name' => 'create events']);
+        Permission::create(['name' => 'update events']);
+        Permission::create(['name' => 'delete events']);
 
         Permission::create(['name' => 'list sermons']);
         Permission::create(['name' => 'view sermons']);

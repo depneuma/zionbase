@@ -52,16 +52,12 @@ class SermonController extends Controller
         $this->authorize('create', Sermon::class);
 
         $validated = $request->validated();
-        if ($request->hasFile('cover')) {
-            $validated['cover'] = $request->file('cover')->store('public');
+        if ($request->hasFile('photo')) {
+            $validated['photo'] = $request->file('photo')->store('public');
         }
 
         if ($request->hasFile('audio')) {
             $validated['audio'] = $request->file('audio')->store('public');
-        }
-
-        if ($request->hasFile('video')) {
-            $validated['video'] = $request->file('video')->store('public');
         }
 
         if ($request->hasFile('pdf')) {
@@ -113,12 +109,12 @@ class SermonController extends Controller
 
         $validated = $request->validated();
 
-        if ($request->hasFile('cover')) {
-            if ($sermon->cover) {
-                Storage::delete($sermon->cover);
+        if ($request->hasFile('photo')) {
+            if ($sermon->photo) {
+                Storage::delete($sermon->photo);
             }
 
-            $validated['cover'] = $request->file('cover')->store('public');
+            $validated['photo'] = $request->file('photo')->store('public');
         }
 
         if ($request->hasFile('audio')) {
@@ -127,14 +123,6 @@ class SermonController extends Controller
             }
 
             $validated['audio'] = $request->file('audio')->store('public');
-        }
-
-        if ($request->hasFile('video')) {
-            if ($sermon->video) {
-                Storage::delete($sermon->video);
-            }
-
-            $validated['video'] = $request->file('video')->store('public');
         }
 
         if ($request->hasFile('pdf')) {
@@ -161,16 +149,12 @@ class SermonController extends Controller
     {
         $this->authorize('delete', $sermon);
 
-        if ($sermon->cover) {
-            Storage::delete($sermon->cover);
+        if ($sermon->photo) {
+            Storage::delete($sermon->photo);
         }
 
         if ($sermon->audio) {
             Storage::delete($sermon->audio);
-        }
-
-        if ($sermon->video) {
-            Storage::delete($sermon->video);
         }
 
         if ($sermon->pdf) {

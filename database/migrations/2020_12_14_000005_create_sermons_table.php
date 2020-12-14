@@ -15,17 +15,17 @@ class CreateSermonsTable extends Migration
     {
         Schema::create('sermons', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('cover')->default();
             $table->string('title');
             $table->string('slug');
             $table->text('description');
             $table->enum('price', ['Free']);
             $table->bigInteger('downloads')->default(0);
-            $table->unsignedBigInteger('user_id');
+            $table->string('audio');
+            $table->string('photo')->default('covers/default.jpg');
+            $table->string('video')->nullable();
+            $table->string('pdf')->nullable();
             $table->unsignedBigInteger('event_id')->nullable();
-            $table->string('audio')->default();
-            $table->string('video')->nullable()->default();
-            $table->string('pdf')->nullable()->default();
+            $table->unsignedBigInteger('user_id');
 
             $table->timestamps();
         });

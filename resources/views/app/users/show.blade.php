@@ -17,6 +17,10 @@
                     <span>{{ $user->title ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
+                    <h5>@lang('crud.users.inputs.office')</h5>
+                    <span>{{ $user->office ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
                     <h5>@lang('crud.users.inputs.name')</h5>
                     <span>{{ $user->name ?? '-' }}</span>
                 </div>

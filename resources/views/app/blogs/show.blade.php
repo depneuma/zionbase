@@ -17,19 +17,19 @@
                     <span>{{ optional($blog->author)->name ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
-                    <h5>@lang('crud.blogs.inputs.image')</h5>
-                    <img
-                        src="{{ $blog->image ? \Storage::url($blog->image) : '' }}"
-                        style="object-fit: cover; width: 150px; height: 150px; border: 1px solid #ccc;"
-                    />
-                </div>
-                <div class="mb-4">
                     <h5>@lang('crud.blogs.inputs.title')</h5>
                     <span>{{ $blog->title ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.blogs.inputs.body')</h5>
                     <span>{{ $blog->body ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.blogs.inputs.image')</h5>
+                    <img
+                        src="{{ $blog->image ? \Storage::url($blog->image) : '' }}"
+                        style="object-fit: cover; width: 150px; height: 150px; border: 1px solid #ccc;"
+                    />
                 </div>
             </div>
 

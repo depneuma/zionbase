@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
             <div style="display: flex; justify-content: space-between;">
-                <h4 class="card-title">@lang('crud.sermons.index_title')</h4>
+                <h4 class="card-title">@lang('crud.settings.index_title')</h4>
             </div>
 
             <div class="searchbar mt-4 mb-5">
@@ -34,9 +34,9 @@
                         </form>
                     </div>
                     <div class="col-md-6 text-right">
-                        @can('create', App\Models\Sermon::class)
+                        @can('create', App\Models\Setting::class)
                         <a
-                            href="{{ route('sermons.create') }}"
+                            href="{{ route('settings.create') }}"
                             class="btn btn-primary"
                         >
                             <i class="icon ion-md-add"></i>
@@ -51,68 +51,27 @@
                 <table class="table table-borderless table-hover">
                     <thead>
                         <tr>
-                            <th>@lang('crud.sermons.inputs.user_id')</th>
-                            <th>@lang('crud.sermons.inputs.photo')</th>
-                            <th>@lang('crud.sermons.inputs.event_id')</th>
-                            <th>@lang('crud.sermons.inputs.title')</th>
-                            <th>@lang('crud.sermons.inputs.description')</th>
-                            <th>@lang('crud.sermons.inputs.price')</th>
-                            <th>@lang('crud.sermons.inputs.audio')</th>
-                            <th>@lang('crud.sermons.inputs.video')</th>
-                            <th>@lang('crud.sermons.inputs.pdf')</th>
+                            <th>@lang('crud.settings.inputs.key')</th>
+                            <th>@lang('crud.settings.inputs.value')</th>
                             <th class="text-center">
                                 @lang('crud.common.actions')
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($sermons as $sermon)
+                        @forelse($settings as $setting)
                         <tr>
-                            <td>
-                                {{ optional($sermon->minister)->name ?? '-' }}
-                            </td>
-                            <td>
-                                <img
-                                    src="{{ $sermon->photo ? \Storage::url($sermon->photo) : '' }}"
-                                    style="object-fit: cover; width: 50px; height: 50px; border: 1px solid #ccc;"
-                                />
-                            </td>
-                            <td>
-                                {{ optional($sermon->event)->title ?? '-' }}
-                            </td>
-                            <td>{{ $sermon->title ?? '-' }}</td>
-                            <td>{{ $sermon->description ?? '-' }}</td>
-                            <td>{{ $sermon->price ?? '-' }}</td>
-                            <td>
-                                @if($sermon->audio)
-                                <a
-                                    href="{{ \Storage::url($sermon->audio) }}"
-                                    target="blank"
-                                    ><i class="icon ion-md-download"></i
-                                    >&nbsp;Download</a
-                                >
-                                @else - @endif
-                            </td>
-                            <td>{{ $sermon->video ?? '-' }}</td>
-                            <td>
-                                @if($sermon->pdf)
-                                <a
-                                    href="{{ \Storage::url($sermon->pdf) }}"
-                                    target="blank"
-                                    ><i class="icon ion-md-download"></i
-                                    >&nbsp;Download</a
-                                >
-                                @else - @endif
-                            </td>
+                            <td>{{ $setting->key ?? '-' }}</td>
+                            <td>{{ $setting->value ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">
                                 <div
                                     role="group"
                                     aria-label="Row Actions"
                                     class="btn-group"
                                 >
-                                    @can('update', $sermon)
+                                    @can('update', $setting)
                                     <a
-                                        href="{{ route('sermons.edit', $sermon) }}"
+                                        href="{{ route('settings.edit', $setting) }}"
                                     >
                                         <button
                                             type="button"
@@ -121,9 +80,9 @@
                                             <i class="icon ion-md-create"></i>
                                         </button>
                                     </a>
-                                    @endcan @can('view', $sermon)
+                                    @endcan @can('view', $setting)
                                     <a
-                                        href="{{ route('sermons.show', $sermon) }}"
+                                        href="{{ route('settings.show', $setting) }}"
                                     >
                                         <button
                                             type="button"
@@ -132,9 +91,9 @@
                                             <i class="icon ion-md-eye"></i>
                                         </button>
                                     </a>
-                                    @endcan @can('delete', $sermon)
+                                    @endcan @can('delete', $setting)
                                     <form
-                                        action="{{ route('sermons.destroy', $sermon) }}"
+                                        action="{{ route('settings.destroy', $setting) }}"
                                         method="POST"
                                         onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                                     >
@@ -152,7 +111,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="10">
+                            <td colspan="3">
                                 @lang('crud.common.no_items_found')
                             </td>
                         </tr>
@@ -160,7 +119,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="10">{!! $sermons->render() !!}</td>
+                            <td colspan="3">{!! $settings->render() !!}</td>
                         </tr>
                     </tfoot>
                 </table>

@@ -24,6 +24,7 @@ class UserFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(10),
+            'office' => $this->faker->text(255),
             'name' => $this->faker->name,
             'email' => $this->faker->email,
             'email_verified_at' => now(),

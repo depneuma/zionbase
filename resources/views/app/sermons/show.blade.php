@@ -17,39 +17,15 @@
                     <span>{{ optional($sermon->minister)->name ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
-                    <h5>@lang('crud.sermons.inputs.event_id')</h5>
-                    <span>{{ optional($sermon->event)->title ?? '-' }}</span>
-                </div>
-                <div class="mb-4">
-                    <h5>@lang('crud.sermons.inputs.cover')</h5>
+                    <h5>@lang('crud.sermons.inputs.photo')</h5>
                     <img
-                        src="{{ $sermon->cover ? \Storage::url($sermon->cover) : '' }}"
+                        src="{{ $sermon->photo ? \Storage::url($sermon->photo) : '' }}"
                         style="object-fit: cover; width: 150px; height: 150px; border: 1px solid #ccc;"
                     />
                 </div>
                 <div class="mb-4">
-                    <h5>@lang('crud.sermons.inputs.audio')</h5>
-                    @if($sermon->audio)
-                    <a href="{{ \Storage::url($sermon->audio) }}" target="blank"
-                        ><i class="icon ion-md-download"></i>&nbsp;Download</a
-                    >
-                    @else - @endif
-                </div>
-                <div class="mb-4">
-                    <h5>@lang('crud.sermons.inputs.video')</h5>
-                    @if($sermon->video)
-                    <a href="{{ \Storage::url($sermon->video) }}" target="blank"
-                        ><i class="icon ion-md-download"></i>&nbsp;Download</a
-                    >
-                    @else - @endif
-                </div>
-                <div class="mb-4">
-                    <h5>@lang('crud.sermons.inputs.pdf')</h5>
-                    @if($sermon->pdf)
-                    <a href="{{ \Storage::url($sermon->pdf) }}" target="blank"
-                        ><i class="icon ion-md-download"></i>&nbsp;Download</a
-                    >
-                    @else - @endif
+                    <h5>@lang('crud.sermons.inputs.event_id')</h5>
+                    <span>{{ optional($sermon->event)->title ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.sermons.inputs.title')</h5>
@@ -62,6 +38,26 @@
                 <div class="mb-4">
                     <h5>@lang('crud.sermons.inputs.price')</h5>
                     <span>{{ $sermon->price ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.sermons.inputs.audio')</h5>
+                    @if($sermon->audio)
+                    <a href="{{ \Storage::url($sermon->audio) }}" target="blank"
+                        ><i class="icon ion-md-download"></i>&nbsp;Download</a
+                    >
+                    @else - @endif
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.sermons.inputs.video')</h5>
+                    <span>{{ $sermon->video ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.sermons.inputs.pdf')</h5>
+                    @if($sermon->pdf)
+                    <a href="{{ \Storage::url($sermon->pdf) }}" target="blank"
+                        ><i class="icon ion-md-download"></i>&nbsp;Download</a
+                    >
+                    @else - @endif
                 </div>
             </div>
 

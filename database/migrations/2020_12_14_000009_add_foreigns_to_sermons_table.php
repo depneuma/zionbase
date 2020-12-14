@@ -15,13 +15,13 @@ class AddForeignsToSermonsTable extends Migration
     {
         Schema::table('sermons', function (Blueprint $table) {
             $table
-                ->foreign('user_id')
-                ->references('id')
-                ->on('users');
-            $table
                 ->foreign('event_id')
                 ->references('id')
                 ->on('events');
+            $table
+                ->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
     }
 
@@ -33,8 +33,8 @@ class AddForeignsToSermonsTable extends Migration
     public function down()
     {
         Schema::table('sermons', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
             $table->dropForeign(['event_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 }

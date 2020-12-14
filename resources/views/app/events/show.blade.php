@@ -13,12 +13,16 @@
 
             <div class="mt-4">
                 <div class="mb-4">
-                    <h5>@lang('crud.events.inputs.rsvp_three_id')</h5>
-                    <span>{{ $event->rsvp_three_id ?? '-' }}</span>
+                    <h5>@lang('crud.events.inputs.rsvp_one_id')</h5>
+                    <span>{{ optional($event->firstRsvp)->name ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.events.inputs.rsvp_two_id')</h5>
-                    <span>{{ $event->rsvp_two_id ?? '-' }}</span>
+                    <span>{{ optional($event->secondRsvp)->name ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.events.inputs.rsvp_three_id')</h5>
+                    <span>{{ optional($event->thridRsvp)->name ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.events.inputs.cover')</h5>
@@ -26,10 +30,6 @@
                         src="{{ $event->cover ? \Storage::url($event->cover) : '' }}"
                         style="object-fit: cover; width: 150px; height: 150px; border: 1px solid #ccc;"
                     />
-                </div>
-                <div class="mb-4">
-                    <h5>@lang('crud.events.inputs.rsvp_one_id')</h5>
-                    <span>{{ optional($event->firstRsvp)->name ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.events.inputs.title')</h5>
@@ -40,16 +40,16 @@
                     <span>{{ $event->description ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
-                    <h5>@lang('crud.events.inputs.venue')</h5>
-                    <span>{{ $event->venue ?? '-' }}</span>
-                </div>
-                <div class="mb-4">
                     <h5>@lang('crud.events.inputs.schedule')</h5>
                     <span>{{ $event->schedule ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
-                    <h5>@lang('crud.events.inputs.time')</h5>
-                    <span>{{ $event->time ?? '-' }}</span>
+                    <h5>@lang('crud.events.inputs.venue')</h5>
+                    <span>{{ $event->venue ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.events.inputs.date_time')</h5>
+                    <span>{{ $event->date_time ?? '-' }}</span>
                 </div>
             </div>
 

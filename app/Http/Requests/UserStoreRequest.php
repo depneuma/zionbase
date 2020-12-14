@@ -25,9 +25,10 @@ class UserStoreRequest extends FormRequest
     {
         return [
             'title' => ['required', 'max:255', 'string'],
+            'office' => ['required', 'max:255', 'string'],
             'name' => ['required', 'max:255', 'string'],
-            'email' => ['required', 'email'],
-            'avatar' => ['nullable', 'file'],
+            'email' => ['required', 'unique:users', 'email'],
+            'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png', 'max:2000'],
             'password' => ['required'],
             'roles' => 'array',
         ];

@@ -14,16 +14,20 @@ class Event extends Model
     protected $fillable = [
         'title',
         'description',
-        'time',
+        'date_time',
+        'schedule',
         'venue',
+        'cover',
         'rsvp_one_id',
         'rsvp_two_id',
         'rsvp_three_id',
-        'cover',
-        'schedule',
     ];
 
     protected $searchableFields = ['*'];
+
+    protected $casts = [
+        'date_time' => 'datetime',
+    ];
 
     public function sermons()
     {

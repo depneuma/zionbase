@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-2">
     <div class="container">
+        
         <a class="navbar-brand text-primary font-weight-bold text-uppercase" href="{{ url('/') }}">
             {{ config('app.name', 'Church') }}
         </a>
@@ -24,14 +25,17 @@
                             @can('view-any', App\Models\User::class)
                             <a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
                             @endcan
-                            @can('view-any', App\Models\Event::class)
-                            <a class="dropdown-item" href="{{ route('events.index') }}">Events</a>
-                            @endcan
                             @can('view-any', App\Models\Blog::class)
                             <a class="dropdown-item" href="{{ route('blogs.index') }}">Blogs</a>
                             @endcan
+                            @can('view-any', App\Models\Event::class)
+                            <a class="dropdown-item" href="{{ route('events.index') }}">Events</a>
+                            @endcan
                             @can('view-any', App\Models\Sermon::class)
                             <a class="dropdown-item" href="{{ route('sermons.index') }}">Sermons</a>
+                            @endcan
+                            @can('view-any', App\Models\Setting::class)
+                            <a class="dropdown-item" href="{{ route('settings.index') }}">Settings</a>
                             @endcan
                         </div>
 
@@ -79,7 +83,7 @@
                             <a class="dropdown-item" href="{{ route('profile.edit') }}" >
                                 {{ __('Profile') }}
                             </a>
-                            <a class="dropdown-item" href="{{ route('settings.edit') }}" >
+                            <a class="dropdown-item" href="{{ route('settings.index') }}" >
                                 {{ __('Settings') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"

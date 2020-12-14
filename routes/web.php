@@ -34,8 +34,13 @@ Route::prefix('/')
         Route::resource('permissions', PermissionController::class);
 
         Route::prefix('settings')->group(function () {
-			Route::get('/', [SettingController::class, 'edit'])->name('settings.edit');
-			Route::post('/', [SettingController::class, 'update'])->name('settings.update');
+            Route::get('/', [SettingController::class, 'index'])->name('settings.index');
+            Route::post('/', [SettingController::class, 'store'])->name('settings.store');
+            Route::get('/create', [SettingController::class, 'create',])->name('settings.create');
+            Route::get('/{setting}', [SettingController::class, 'show',])->name('settings.show');
+            Route::get('/{setting}/edit', [SettingController::class, 'edit',])->name('settings.edit');
+            Route::put('/{setting}', [SettingController::class, 'update',])->name('settings.update');
+            Route::delete('/{setting}', [SettingController::class, 'destroy',])->name('settings.destroy');
         });
         
         Route::prefix('users')->group(function () {

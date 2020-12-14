@@ -12,17 +12,17 @@ class Sermon extends Model
     use Searchable;
 
     protected $fillable = [
-        'cover',
         'title',
         'slug',
         'description',
         'price',
         'downloads',
-        'user_id',
-        'event_id',
         'audio',
+        'photo',
         'video',
         'pdf',
+        'event_id',
+        'user_id',
     ];
 
     protected $searchableFields = ['*'];

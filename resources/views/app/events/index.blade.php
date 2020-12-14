@@ -51,15 +51,15 @@
                 <table class="table table-borderless table-hover">
                     <thead>
                         <tr>
-                            <th>@lang('crud.events.inputs.rsvp_three_id')</th>
-                            <th>@lang('crud.events.inputs.rsvp_two_id')</th>
-                            <th>@lang('crud.events.inputs.cover')</th>
                             <th>@lang('crud.events.inputs.rsvp_one_id')</th>
+                            <th>@lang('crud.events.inputs.rsvp_two_id')</th>
+                            <th>@lang('crud.events.inputs.rsvp_three_id')</th>
+                            <th>@lang('crud.events.inputs.cover')</th>
                             <th>@lang('crud.events.inputs.title')</th>
                             <th>@lang('crud.events.inputs.description')</th>
-                            <th>@lang('crud.events.inputs.venue')</th>
                             <th>@lang('crud.events.inputs.schedule')</th>
-                            <th>@lang('crud.events.inputs.time')</th>
+                            <th>@lang('crud.events.inputs.venue')</th>
+                            <th>@lang('crud.events.inputs.date_time')</th>
                             <th class="text-center">
                                 @lang('crud.common.actions')
                             </th>
@@ -68,22 +68,26 @@
                     <tbody>
                         @forelse($events as $event)
                         <tr>
-                            <td>{{ $event->rsvp_three_id ?? '-' }}</td>
-                            <td>{{ $event->rsvp_two_id ?? '-' }}</td>
+                            <td>
+                                {{ optional($event->firstRsvp)->name ?? '-' }}
+                            </td>
+                            <td>
+                                {{ optional($event->secondRsvp)->name ?? '-' }}
+                            </td>
+                            <td>
+                                {{ optional($event->thridRsvp)->name ?? '-' }}
+                            </td>
                             <td>
                                 <img
                                     src="{{ $event->cover ? \Storage::url($event->cover) : '' }}"
                                     style="object-fit: cover; width: 50px; height: 50px; border: 1px solid #ccc;"
                                 />
                             </td>
-                            <td>
-                                {{ optional($event->firstRsvp)->name ?? '-' }}
-                            </td>
                             <td>{{ $event->title ?? '-' }}</td>
                             <td>{{ $event->description ?? '-' }}</td>
-                            <td>{{ $event->venue ?? '-' }}</td>
                             <td>{{ $event->schedule ?? '-' }}</td>
-                            <td>{{ $event->time ?? '-' }}</td>
+                            <td>{{ $event->venue ?? '-' }}</td>
+                            <td>{{ $event->date_time ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">
                                 <div
                                     role="group"

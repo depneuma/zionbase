@@ -23,29 +23,11 @@ return [
         'show_title' => 'Show User',
         'inputs' => [
             'title' => 'Title',
+            'office' => 'Office',
             'name' => 'Name',
             'email' => 'Email',
             'avatar' => 'Avatar',
             'password' => 'Password',
-        ],
-    ],
-
-    'events' => [
-        'name' => 'Events',
-        'index_title' => 'Events List',
-        'create_title' => 'Create Event',
-        'edit_title' => 'Edit Event',
-        'show_title' => 'Show Event',
-        'inputs' => [
-            'rsvp_three_id' => 'Rsvp Three Id',
-            'rsvp_two_id' => 'Rsvp Two Id',
-            'cover' => 'Cover',
-            'rsvp_one_id' => 'First RSVP',
-            'title' => 'Title',
-            'description' => 'Description',
-            'venue' => 'Venue',
-            'schedule' => 'Schedule',
-            'time' => 'Time',
         ],
     ],
 
@@ -57,9 +39,28 @@ return [
         'show_title' => 'Show Blog',
         'inputs' => [
             'user_id' => 'Author',
-            'image' => 'Image',
             'title' => 'Title',
             'body' => 'Body',
+            'image' => 'Image',
+        ],
+    ],
+
+    'events' => [
+        'name' => 'Events',
+        'index_title' => 'Events List',
+        'create_title' => 'Create Event',
+        'edit_title' => 'Edit Event',
+        'show_title' => 'Show Event',
+        'inputs' => [
+            'rsvp_one_id' => 'First RSVP',
+            'rsvp_two_id' => 'Second RSVP (Optional)',
+            'rsvp_three_id' => 'Thrid RSVP (Optional)',
+            'cover' => 'Cover',
+            'title' => 'Title',
+            'description' => 'Description',
+            'schedule' => 'Schedule',
+            'venue' => 'Venue',
+            'date_time' => 'Date Time',
         ],
     ],
 
@@ -71,14 +72,26 @@ return [
         'show_title' => 'Show Sermon',
         'inputs' => [
             'user_id' => 'Minister',
+            'photo' => 'Photo',
             'event_id' => 'Event (Optional)',
-            'cover' => 'Cover',
-            'audio' => 'Audio',
-            'video' => 'Video',
-            'pdf' => 'Pdf',
             'title' => 'Title',
             'description' => 'Description',
             'price' => 'Price',
+            'audio' => 'Audio',
+            'video' => 'Video',
+            'pdf' => 'PDF',
+        ],
+    ],
+
+    'settings' => [
+        'name' => 'Settings',
+        'index_title' => 'Settings List',
+        'create_title' => 'Create Setting',
+        'edit_title' => 'Edit Setting',
+        'show_title' => 'Show Setting',
+        'inputs' => [
+            'key' => 'Key',
+            'value' => 'Value',
         ],
     ],
 

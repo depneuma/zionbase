@@ -59,10 +59,4 @@ trait Base
 
         return redirect($route);
     }
-    
-    protected function amountBeforeFees($whole)
-    {
-        $quater = calculatePercentage(null, $whole, Setting::get('default_ratio'));
-        return $quater;
-    }
 }

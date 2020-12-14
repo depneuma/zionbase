@@ -11,12 +11,12 @@ class Blog extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['image', 'title', 'body', 'user_id'];
+    protected $fillable = ['title', 'body', 'image', 'user_id'];
 
     protected $searchableFields = ['*'];
 
     public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

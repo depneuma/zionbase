@@ -1,6 +1,6 @@
 <div class="card mb-4">
     <div class="card-header">
-        <h3>{{ __('Update Social Links') }}</h3>
+        {{ __('Update Social Links') }}
     </div>
     <div class="card-body">
         <p>

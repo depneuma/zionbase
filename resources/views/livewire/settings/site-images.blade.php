@@ -1,13 +1,17 @@
-<div class="card">
+<div class="card mb-4">
+    <div class="card-header">
+        {{ __('Change Site Images') }}
+    </div>
     <div class="card-body">
         <p>
-            {{ __('Change Site Images') }}
+            {{ __('Update website images') }}
         </p>
         <div class="mt-3">
+            
             <form>
                 <div class="form-group row">
 
-                    <div class="col-md-3 col-sm-6 m-b30">
+                    <div class="col-md-4 col-sm-6 m-b30">
                         <div class="wt-box bg-white p-a20 border-1">
                             <h4 class="wt-title m-t20">Site Favicon</h4>
                             <div class="wt-media">
@@ -27,7 +31,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6 m-b30">
+                    <div class="col-md-4 col-sm-6 m-b30">
                         <div class="wt-box bg-white p-a20 border-1">
                             <h4 class="wt-title m-t20">Site Logo</h4>
                             <div class="wt-media">
@@ -47,7 +51,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6 m-b30">
+                    <div class="col-md-4 col-sm-6 m-b30">
                         <div class="wt-box bg-white p-a20 border-1">
                             <h4 class="wt-title m-t20">Site Slider Image</h4>
                             <div class="wt-media">
@@ -67,7 +71,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6 m-b30">
+                    <div class="col-md-4 col-sm-6 m-b30">
                         <div class="wt-box bg-white p-a20 border-1">
                             <h4 class="wt-title m-t20">Site Guest Banner</h4>
                             <div class="wt-media">
@@ -87,7 +91,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6 m-b30">
+                    <div class="col-md-4 col-sm-6 m-b30">
                         <div class="wt-box bg-white p-a20 border-1">
                             <h4 class="wt-title m-t20">Site Banner</h4>
                             <div class="wt-media">
@@ -107,7 +111,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6 m-b30">
+                    <div class="col-md-4 col-sm-6 m-b30">
                         <div class="wt-box bg-white p-a20 border-1">
                             <h4 class="wt-title m-t20">Site Packages</h4>
                             <div class="wt-media">
@@ -129,7 +133,7 @@
                 </div>
                 <div class="form-group row mb-0">
                     <div class="col-md-12">
-                        <a wire:click="save()" class="btn btn-primary btn-block">
+                        <a wire:click="save()" class="btn btn-primary">
                             {{ __('Update Images') }}
                         </a>
                     </div>

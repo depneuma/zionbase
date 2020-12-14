@@ -1,6 +1,6 @@
-<div class="card">
+<div class="card mb-4">
     <div class="card-header">
-        <h3>{{ __('General Settings') }}</h3>
+        {{ __('General Settings') }}
     </div>
     <div class="card-body">
         <p>
@@ -60,7 +60,8 @@
                     <div class="col-md-6">
                         <textarea name="seo_meta_description" id="seo_meta_description" cols="30" rows="3"
                             wire:model.defer="seo_meta_description" wire:dirty.class="has-error"
-                            class="form-control @error('seo_meta_description') is-invalid @enderror" value="{{ old('seo_meta_description') }}" required autocomplete="seo_meta_description">
+                            class="form-control @error('seo_meta_description') is-invalid @enderror"
+                            value="{{ old('seo_meta_description') }}" required autocomplete="seo_meta_description">
                         </textarea>
                         @error('seo_meta_description')
                         <span class="text-danger" role="alert">
@@ -76,7 +77,8 @@
                     <div class="col-md-6">
                         <textarea name="seo_meta_keywords" id="seo_meta_keywords" cols="30" rows="3"
                             wire:model.defer="seo_meta_keywords" wire:dirty.class="has-error"
-                            class="form-control @error('seo_meta_keywords') is-invalid @enderror" value="{{ old('seo_meta_keywords') }}" required autocomplete="seo_meta_keywords">
+                            class="form-control @error('seo_meta_keywords') is-invalid @enderror"
+                            value="{{ old('seo_meta_keywords') }}" required autocomplete="seo_meta_keywords">
                         </textarea>
                         @error('seo_meta_keywords')
                         <span class="text-danger" role="alert">
@@ -91,9 +93,9 @@
                         class="col-md-4 col-form-label text-md-right">{{ __('Footer Copyright Text') }}</label>
                     <div class="col-md-6">
                         <input wire:model.defer="footer_copyright_text" wire:dirty.class="has-error" type="text"
-                            class="form-control @error('footer_copyright_text') is-invalid @enderror" name="footer_copyright_text"
-                            placeholder="{{ $footer_copyright_text }}" value="{{ old('footer_copyright_text') }}" required
-                            autocomplete="footer_copyright_text">
+                            class="form-control @error('footer_copyright_text') is-invalid @enderror"
+                            name="footer_copyright_text" placeholder="{{ $footer_copyright_text }}"
+                            value="{{ old('footer_copyright_text') }}" required autocomplete="footer_copyright_text">
                         @error('footer_copyright_text')
                         <span class="text-danger" role="alert">
                             <strong>{{ $message }}</strong>

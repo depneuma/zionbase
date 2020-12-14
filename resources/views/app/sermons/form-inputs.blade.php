@@ -70,7 +70,6 @@
         <x-inputs.select name="price" label="Price">
             @php $selected = old('price', ($editing ? $sermon->price : '')) @endphp
             <option value="free" {{ $selected == 'free' ? 'selected' : '' }} >Free</option>
-            <option value="" {{ $selected == '' ? 'selected' : '' }} ></option>
         </x-inputs.select>
     </x-inputs.group>
 

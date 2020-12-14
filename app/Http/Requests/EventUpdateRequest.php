@@ -30,9 +30,9 @@ class EventUpdateRequest extends FormRequest
             'cover' => [
                 'required',
                 'max:255',
-                'string',
                 'mimes:jpg,jpeg,png',
                 'max:2000',
+                'file',
             ],
             'title' => ['required', 'max:255', 'string'],
             'description' => ['required', 'max:255', 'string'],

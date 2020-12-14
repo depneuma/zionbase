@@ -18,7 +18,7 @@ class CreateSermonsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description');
-            $table->enum('price', ['Free']);
+            $table->string('price');
             $table->bigInteger('downloads')->default(0);
             $table->string('audio');
             $table->string('photo')->default('covers/default.jpg');

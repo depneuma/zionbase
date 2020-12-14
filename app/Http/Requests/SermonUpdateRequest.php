@@ -29,8 +29,13 @@ class SermonUpdateRequest extends FormRequest
             'event_id' => ['nullable', 'exists:events,id'],
             'title' => ['required', 'max:255', 'string'],
             'description' => ['required', 'max:255', 'string'],
-            'price' => ['required', 'in:Free'],
-            'audio' => ['required', 'file', 'max:20000', 'mimes:audio/mpeg'],
+            'price' => ['required', 'max:255', 'string'],
+            'audio' => [
+                'required',
+                'file',
+                'max:20000',
+                'mimetypes:audio/mpeg',
+            ],
             'video' => ['nullable', 'max:255', 'string'],
             'pdf' => [
                 'nullable',

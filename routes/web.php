@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
@@ -21,15 +21,23 @@ use App\Http\Controllers\PermissionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [PageController::class, 'welcome'])->name('pages.welcome');
+
+Route::prefix('pages')->group(function () {
+    Route::get('/about', [PageController::class, 'about'])->name('pages.about');
+    Route::get('/sermons', [PageController::class, 'sermons'])->name('pages.sermons');
+    Route::get('/blogs', [PageController::class, 'blogs'])->name('pages.blogs');
+    Route::get('/blogs/{blog}', [PageController::class, 'showBlog',])->name('pages.blogs.show');
+    Route::get('/events', [PageController::class, 'events'])->name('pages.events');
+    Route::get('/contact', [PageController::class, 'contact'])->name('pages.contact');
 });
-Route::view('home', 'home')->name('home')->middleware(['auth']);
-Route::view('profile', 'profile.edit')->name('profile.edit')->middleware(['auth']);
 
 Route::prefix('/')
     ->middleware('auth')
     ->group(function () {
+        Route::view('home', 'home')->name('home');
+        Route::view('profile', 'profile.edit')->name('profile.edit');
+
         Route::resource('roles', RoleController::class);
         Route::resource('permissions', PermissionController::class);
 

@@ -17,12 +17,32 @@ class SettingSeeder extends Seeder
         |--------------------------------------------------------------------------
         */
         [
+            'key'                       =>  'church_name',
+            'value'                     =>  'Shammah Divine Zion Ministry',
+        ],
+        [
+            'key'                       =>  'church_description',
+            'value'                     =>  'Transforming Lives In Zion Through The Power In The Word of God To Transform Generations.',
+        ],
+        [
+            'key'                       =>  'church_address',
+            'value'                     =>  'No. 36 Orierhe Street, Off Apala Road, Warri, Nigeria.',
+        ],
+        [
+            'key'                       =>  'church_contact_number',
+            'value'                     =>  '+234 813 289 7322',
+        ],
+        [
+            'key'                       =>  'church_email',
+            'value'                     =>  'zionbasemedia@gmail.com',
+        ],
+        [
             'key'                       =>  'domain_name',
-            'value'                     =>  '',
+            'value'                     =>  'ZionBase.org',
         ],
         [
             'key'                       =>  'seo_meta_title',
-            'value'                     =>  '',
+            'value'                     =>  'Shammah Divine Zion Ministry',
         ],
         [
             'key'                       =>  'seo_meta_keywords',
@@ -30,10 +50,6 @@ class SettingSeeder extends Seeder
         ],
         [
             'key'                       =>  'seo_meta_description',
-            'value'                     =>  '',
-        ],
-        [
-            'key'                       =>  'default_email_address',
             'value'                     =>  '',
         ],
         [

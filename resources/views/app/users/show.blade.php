@@ -25,6 +25,14 @@
                     <span>{{ $user->name ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
+                    <h5>@lang('crud.users.inputs.mobile')</h5>
+                    <span>{{ $user->mobile ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.users.inputs.about')</h5>
+                    <span>{{ $user->about ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
                     <h5>@lang('crud.users.inputs.email')</h5>
                     <span>{{ $user->email ?? '-' }}</span>
                 </div>

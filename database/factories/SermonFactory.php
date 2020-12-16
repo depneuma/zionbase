@@ -24,7 +24,6 @@ class SermonFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(10),
-            'slug' => $this->faker->slug,
             'description' => $this->faker->sentence(15),
             'price' => 'Free',
             'downloads' => $this->faker->randomDigit,

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HeroController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -27,7 +28,7 @@ Route::prefix('pages')->group(function () {
     Route::get('/about', [PageController::class, 'about'])->name('pages.about');
     Route::get('/sermons', [PageController::class, 'sermons'])->name('pages.sermons');
     Route::get('/blogs', [PageController::class, 'blogs'])->name('pages.blogs');
-    Route::get('/blogs/{blog}', [PageController::class, 'showBlog',])->name('pages.blogs.show');
+    Route::get('/blogs/{slug}', [PageController::class, 'showBlog',])->name('pages.blogs.show');
     Route::get('/events', [PageController::class, 'events'])->name('pages.events');
     Route::get('/contact', [PageController::class, 'contact'])->name('pages.contact');
 });
@@ -35,7 +36,7 @@ Route::prefix('pages')->group(function () {
 Route::prefix('/')
     ->middleware('auth')
     ->group(function () {
-        Route::view('home', 'home')->name('home');
+        Route::view('home', 'pages.home')->name('home');
         Route::view('profile', 'profile.edit')->name('profile.edit');
 
         Route::resource('roles', RoleController::class);
@@ -50,6 +51,16 @@ Route::prefix('/')
             Route::put('/{setting}', [SettingController::class, 'update',])->name('settings.update');
             Route::delete('/{setting}', [SettingController::class, 'destroy',])->name('settings.destroy');
         });
+        
+        Route::prefix('heros')->group(function () {
+            Route::get('/', [HeroController::class, 'index'])->name('heros.index');
+            Route::post('/', [HeroController::class, 'store'])->name('heros.store');
+            Route::get('/create', [HeroController::class, 'create'])->name('heros.create');
+            Route::get('/{hero}', [HeroController::class, 'show'])->name('heros.show');
+            Route::get('/{hero}/edit', [HeroController::class, 'edit'])->name('heros.edit');
+            Route::put('/{hero}', [HeroController::class, 'update'])->name('heros.update');
+            Route::delete('/{hero}', [HeroController::class, 'destroy'])->name('heros.destroy');
+		});
         
         Route::prefix('users')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('users.index');

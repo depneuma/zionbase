@@ -25,9 +25,27 @@ return [
             'title' => 'Title',
             'office' => 'Office',
             'name' => 'Name',
+            'mobile' => 'Mobile',
+            'about' => 'About',
             'email' => 'Email',
             'avatar' => 'Avatar',
             'password' => 'Password',
+        ],
+    ],
+
+    'heros' => [
+        'name' => 'Heros',
+        'index_title' => 'Heros List',
+        'create_title' => 'Create Hero',
+        'edit_title' => 'Edit Hero',
+        'show_title' => 'Show Hero',
+        'inputs' => [
+            'line_one' => 'Line One',
+            'line_two' => 'Line Two',
+            'line_three' => 'Line Three',
+            'button_route' => 'Button Route Name',
+            'button_name' => 'Button Route Label',
+            'image' => 'Background Image',
         ],
     ],
 
@@ -60,6 +78,7 @@ return [
             'description' => 'Description',
             'schedule' => 'Schedule',
             'venue' => 'Venue',
+            'address' => 'Address',
             'date_time' => 'Date Time',
         ],
     ],
@@ -92,6 +111,7 @@ return [
         'inputs' => [
             'key' => 'Key',
             'value' => 'Value',
+            'image' => 'Image',
         ],
     ],
 

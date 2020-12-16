@@ -3,40 +3,44 @@
 @section('content')
 <div class="container">
     <div class="card">
-        <div class="card-body"> 
+        <div class="card-body">
             <h4 class="card-title">
-                <a href="{{ route('settings.index') }}" class="mr-4"
+                <a href="{{ route('heros.index') }}" class="mr-4"
                     ><i class="icon ion-md-arrow-back"></i
                 ></a>
-                @lang('crud.settings.show_title')
+                @lang('crud.heros.show_title')
             </h4>
 
             <div class="mt-4">
                 <div class="mb-4">
-                    <h5>@lang('crud.settings.inputs.key')</h5>
-                    <span>{{ $setting->key ?? '-' }}</span>
+                    <h5>@lang('crud.heros.inputs.line_one')</h5>
+                    <span>{{ $hero->line_one ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
-                    <h5>@lang('crud.settings.inputs.value')</h5>
-                    <span>{{ $setting->value ?? '-' }}</span>
+                    <h5>@lang('crud.heros.inputs.line_two')</h5>
+                    <span>{{ $hero->line_two ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
-                    <h5>@lang('crud.settings.inputs.image')</h5>
+                    <h5>@lang('crud.heros.inputs.line_three')</h5>
+                    <span>{{ $hero->line_three ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.heros.inputs.image')</h5>
                     <img
-                        src="{{ \Storage::url(config('settings.'.$setting->key)) }}"
+                        src="{{ $hero->image ? \Storage::url($hero->image) : '' }}"
                         style="object-fit: cover; width: 150px; height: 150px; border: 1px solid #ccc;"
                     />
                 </div>
             </div>
 
             <div class="mt-4">
-                <a href="{{ route('settings.index') }}" class="btn btn-light">
+                <a href="{{ route('heros.index') }}" class="btn btn-light">
                     <i class="icon ion-md-return-left"></i>
                     @lang('crud.common.back')
                 </a>
 
-                @can('create', App\Models\Setting::class)
-                <a href="{{ route('settings.create') }}" class="btn btn-light">
+                @can('create', App\Models\Hero::class)
+                <a href="{{ route('heros.create') }}" class="btn btn-light">
                     <i class="icon ion-md-add"></i> @lang('crud.common.create')
                 </a>
                 @endcan

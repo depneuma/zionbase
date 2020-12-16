@@ -59,6 +59,7 @@
                             <th>@lang('crud.events.inputs.description')</th>
                             <th>@lang('crud.events.inputs.schedule')</th>
                             <th>@lang('crud.events.inputs.venue')</th>
+                            <th>@lang('crud.events.inputs.address')</th>
                             <th>@lang('crud.events.inputs.date_time')</th>
                             <th class="text-center">
                                 @lang('crud.common.actions')
@@ -87,6 +88,7 @@
                             <td>{{ $event->description ?? '-' }}</td>
                             <td>{{ $event->schedule ?? '-' }}</td>
                             <td>{{ $event->venue ?? '-' }}</td>
+                            <td>{{ $event->address ?? '-' }}</td>
                             <td>{{ $event->date_time ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">
                                 <div

@@ -21,7 +21,7 @@ class CreateSermonsTable extends Migration
             $table->string('price');
             $table->bigInteger('downloads')->default(0);
             $table->string('audio');
-            $table->string('photo')->default('covers/default.jpg');
+            $table->string('photo')->default('public/default.jpg');
             $table->string('video')->nullable();
             $table->string('pdf')->nullable();
             $table->unsignedBigInteger('event_id')->nullable();

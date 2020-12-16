@@ -54,6 +54,8 @@
                             <th>@lang('crud.users.inputs.title')</th>
                             <th>@lang('crud.users.inputs.office')</th>
                             <th>@lang('crud.users.inputs.name')</th>
+                            <th>@lang('crud.users.inputs.mobile')</th>
+                            <th>@lang('crud.users.inputs.about')</th>
                             <th>@lang('crud.users.inputs.email')</th>
                             <th>@lang('crud.users.inputs.avatar')</th>
                             <th class="text-center">
@@ -67,6 +69,8 @@
                             <td>{{ $user->title ?? '-' }}</td>
                             <td>{{ $user->office ?? '-' }}</td>
                             <td>{{ $user->name ?? '-' }}</td>
+                            <td>{{ $user->mobile ?? '-' }}</td>
+                            <td>{{ $user->about ?? '-' }}</td>
                             <td>{{ $user->email ?? '-' }}</td>
                             <td>
                                 <img

@@ -15,8 +15,6 @@
                                 class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
                         <a href="{{ config('settings.social_instagram') }}" class="d-flex align-items-center justify-content-center"><span
                                 class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-                        <a href="{{ config('settings.social_dribble') }}" class="d-flex align-items-center justify-content-center"><span
-                                class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
                     </p>
                 </div>
             </div>
@@ -26,7 +24,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('pages.welcome') }}">{{ config('settings.seo_title') }}</a>
+        <a class="navbar-brand" href="{{ route('pages.welcome') }}"><img src="{{ \Storage::url(config('settings.site_logo')) }}" alt="{{ config('settings.church_name') }}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu

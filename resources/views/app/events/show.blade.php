@@ -48,6 +48,10 @@
                     <span>{{ $event->venue ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
+                    <h5>@lang('crud.events.inputs.address')</h5>
+                    <span>{{ $event->address ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
                     <h5>@lang('crud.events.inputs.date_time')</h5>
                     <span>{{ $event->date_time ?? '-' }}</span>
                 </div>

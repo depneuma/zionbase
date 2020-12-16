@@ -98,6 +98,16 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
+        <x-inputs.text
+            name="address"
+            label="Address"
+            value="{{ old('address', ($editing ? $event->address : '')) }}"
+            maxlength="255"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
         <x-inputs.datetime
             name="date_time"
             label="Date Time"

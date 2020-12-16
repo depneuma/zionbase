@@ -26,8 +26,8 @@ class BlogUpdateRequest extends FormRequest
         return [
             'user_id' => ['required', 'exists:users,id'],
             'title' => ['required', 'max:255', 'string'],
-            'body' => ['required', 'max:255', 'string'],
-            'image' => ['required', 'file', 'max:2000', 'mimes:jpg,jpeg,png'],
+            'body' => ['required', 'max:10000', 'string'],
+            'image' => ['nullable', 'file', 'max:2000', 'mimes:jpg,jpeg,png'],
         ];
     }
 }

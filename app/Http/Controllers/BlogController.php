@@ -22,7 +22,7 @@ class BlogController extends Controller
         $search = $request->get('search', '');
 
         $blogs = Blog::search($search)
-            ->latest()
+            ->orderBy('created_at', 'desc')
             ->paginate();
 
         return view('app.blogs.index', compact('blogs', 'search'));

@@ -20,7 +20,8 @@ class CreateEventsTable extends Migration
             $table->timestamp('date_time');
             $table->text('schedule');
             $table->string('venue');
-            $table->string('cover')->default('covers/default.jpg');
+            $table->string('address');
+            $table->string('cover')->default('public/default.jpg');
             $table->unsignedBigInteger('rsvp_one_id');
             $table->unsignedBigInteger('rsvp_two_id')->nullable();
             $table->unsignedBigInteger('rsvp_three_id')->nullable();

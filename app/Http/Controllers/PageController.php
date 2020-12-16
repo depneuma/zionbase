@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\Hero;
+use App\Models\User;
 use App\Traits\Base;
+use App\Models\Event;
+use App\Models\Sermon;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -26,37 +32,52 @@ class PageController extends Controller
 
     public function welcome()
     {
-        return view('pages.welcome');
+        $heros = Hero::all();
+        $event = Event::orderBy('date_time')->first();
+        $blogs = Blog::orderBy('created_at', 'desc')->get()->take(3);
+        return view('pages.welcome', compact(['heros', 'event', 'blogs']));
     }
 
     public function about()
     {
-        $this->setPageTitle('About Us', 'About '. config('settings.church_name'));
-        return view('pages.about');
+        $founder = User::where('title', Setting::get('pastor_title'))->first() ?? User::first();
+        $leaders = User::where('title', 'Pastor')->get()->forget($founder->id);
+        $this->setPageTitle('About Us', 'About ' . config('settings.church_name'));
+        return view('pages.about', compact(['founder', 'leaders']));
     }
 
     public function sermons()
     {
+        $sermons = Sermon::latest()->paginate();
         $this->setPageTitle('Sermons', 'Download Messages');
-        return view('pages.sermons');
+        return view('pages.sermons', compact(['sermons']))->with('sn', 1);
     }
 
     public function events()
     {
+        $events = Event::orderBy('date_time')->with('firstRsvp')->paginate();
+
         $this->setPageTitle('Events', 'Upcoming Events');
-        return view('pages.events');
+        return view('pages.events', compact(['events']));
     }
 
     public function blogs()
     {
+        $blogs = Blog::orderBy('created_at', 'desc')->with('author')->paginate();
         $this->setPageTitle('Blogs', 'Your Life News');
-        return view('pages.blogs');
+        return view('pages.blogs', compact(['blogs']));
     }
 
-    public function showBlog($blog)
+    public function showBlog(Request $request, $slug)
     {
-        $this->setPageTitle('Article', $blog);
-        return view('pages.blog');
+        $search = $request->get('search', '');
+
+        $blog = Blog::where('slug', $slug)->first();
+        $blogs = Blog::search($search)
+            ->orderBy('created_at', 'desc')
+            ->paginate()->forget($blog->id);
+        $this->setPageTitle('Article', $blog->title);
+        return view('pages.blog', compact(['blog', 'blogs', 'search'])); 
     }
 
     public function contact()
@@ -64,7 +85,7 @@ class PageController extends Controller
         $this->setPageTitle('Contact Us', 'We Love To Hear From You');
         return view('pages.contact');
     }
-    
+
     public function home()
     {
         return view('pages.home');

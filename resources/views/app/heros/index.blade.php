@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
             <div style="display: flex; justify-content: space-between;">
-                <h4 class="card-title">@lang('crud.settings.index_title')</h4>
+                <h4 class="card-line_one">@lang('crud.heros.index_title')</h4>
             </div>
 
             <div class="searchbar mt-4 mb-5">
@@ -16,7 +16,7 @@
                                 <input
                                     id="indexSearch"
                                     type="text"
-                                    name="search"
+                                    line_three="search"
                                     placeholder="{{ __('crud.common.search') }}"
                                     value="{{ $search ?? '' }}"
                                     class="form-control"
@@ -34,9 +34,9 @@
                         </form>
                     </div>
                     <div class="col-md-6 text-right">
-                        @can('create', App\Models\Setting::class)
+                        @can('create', App\Models\Hero::class)
                         <a
-                            href="{{ route('settings.create') }}"
+                            href="{{ route('heros.create') }}"
                             class="btn btn-primary"
                         >
                             <i class="icon ion-md-add"></i>
@@ -51,24 +51,25 @@
                 <table class="table table-borderless table-hover">
                     <thead>
                         <tr>
-                            <th>@lang('crud.settings.inputs.key')</th>
-                            <th>@lang('crud.settings.inputs.value')</th>
-                            <th>@lang('crud.settings.inputs.image')</th>
+                            <th>@lang('crud.heros.inputs.line_one')</th>
+                            <th>@lang('crud.heros.inputs.line_two')</th>
+                            <th>@lang('crud.heros.inputs.line_three')</th>
+                            <th>@lang('crud.heros.inputs.image')</th>
                             <th class="text-center">
                                 @lang('crud.common.actions')
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($settings as $setting)
+                        @forelse($heros as $hero)
                         <tr>
-                            <td>{{ $setting->key ?? '-' }}</td>
-                            <td>{{ $setting->value ?? '-' }}</td>
+                            <td>{{ $hero->line_one ?? '-' }}</td>
+                            <td>{{ $hero->line_two ?? '-' }}</td>
+                            <td>{{ $hero->line_three ?? '-' }}</td>
                             <td>
                                 <img
-                                    src="{{ \Storage::url(config('settings.'.$setting->key)) }}"
+                                    src="{{ $hero->image ? \Storage::url($hero->image) : '' }}"
                                     style="object-fit: cover; width: 50px; height: 50px; border: 1px solid #ccc;"
-                                    alt="{{ $setting->key }}"
                                 />
                             </td>
                             <td class="text-center" style="width: 134px;">
@@ -77,10 +78,8 @@
                                     aria-label="Row Actions"
                                     class="btn-group"
                                 >
-                                    @can('update', $setting)
-                                    <a
-                                        href="{{ route('settings.edit', $setting) }}"
-                                    >
+                                    @can('update', $hero)
+                                    <a href="{{ route('heros.edit', $hero) }}">
                                         <button
                                             type="button"
                                             class="btn btn-light"
@@ -88,10 +87,8 @@
                                             <i class="icon ion-md-create"></i>
                                         </button>
                                     </a>
-                                    @endcan @can('view', $setting)
-                                    <a
-                                        href="{{ route('settings.show', $setting) }}"
-                                    >
+                                    @endcan @can('view', $hero)
+                                    <a href="{{ route('heros.show', $hero) }}">
                                         <button
                                             type="button"
                                             class="btn btn-light"
@@ -99,9 +96,9 @@
                                             <i class="icon ion-md-eye"></i>
                                         </button>
                                     </a>
-                                    @endcan @can('delete', $setting)
+                                    @endcan @can('delete', $hero)
                                     <form
-                                        action="{{ route('settings.destroy', $setting) }}"
+                                        action="{{ route('heros.destroy', $hero) }}"
                                         method="POST"
                                         onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                                     >
@@ -119,7 +116,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="3">
+                            <td colspan="6">
                                 @lang('crud.common.no_items_found')
                             </td>
                         </tr>
@@ -127,7 +124,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3">{!! $settings->render() !!}</td>
+                            <td colspan="6">{!! $heros->render() !!}</td>
                         </tr>
                     </tfoot>
                 </table>

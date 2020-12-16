@@ -18,10 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('title');
             $table->string('office');
             $table->string('name');
+            $table->text('about');
+            $table->string('mobile')->unique();
             $table->string('email')->unique();
             $table
                 ->string('avatar')
-                ->default('avatar/default.jpg')
+                ->default('public/default.jpg')
                 ->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->default('12345678');

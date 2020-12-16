@@ -24,8 +24,9 @@ class SettingUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'key' => ['required', 'unique:settings', 'max:255', 'string'],
+            'key' => ['required', 'max:255', 'string'],
             'value' => ['nullable', 'max:255', 'string'],
+            'image' => ['nullable', 'file', 'max:2000', 'mimes:jpg,jpeg,png'],
         ];
     }
 }

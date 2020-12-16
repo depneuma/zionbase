@@ -28,9 +28,9 @@ class FortifyBootstrapServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
-        Fortify::registerView(function () {
-            return view('auth.register');
-        });
+        // Fortify::registerView(function () {
+        //     return view('auth.register');
+        // });
 
         Fortify::requestPasswordResetLinkView(function () {
             return view('auth.forgot-password');
@@ -40,9 +40,9 @@ class FortifyBootstrapServiceProvider extends ServiceProvider
             return view('auth.reset-password', ['request' => $request]);
         });
 
-        // Fortify::verifyEmailView(function () {
-        //     return view('auth.verify-email');
-        // });
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
 
         Fortify::confirmPasswordView(function () {
             return view('auth.confirm-password');

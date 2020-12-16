@@ -5,40 +5,29 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">
-                <a href="{{ route('settings.index') }}" class="mr-4"
+                <a href="{{ route('heros.index') }}" class="mr-4"
                     ><i class="icon ion-md-arrow-back"></i
                 ></a>
-                @lang('crud.settings.edit_title')
+                @lang('crud.heros.create_title')
             </h4>
 
             <x-form
-                method="PUT"
-                action="{{ route('settings.update', $setting) }}"
+                method="POST"
+                action="{{ route('heros.store') }}"
                 has-files
                 class="mt-4"
             >
-                @include('app.settings.form-inputs')
+                @include('app.heros.form-inputs')
 
                 <div class="mt-4">
-                    <a
-                        href="{{ route('settings.index') }}"
-                        class="btn btn-light"
-                    >
+                    <a href="{{ route('heros.index') }}" class="btn btn-light">
                         <i class="icon ion-md-return-left text-primary"></i>
                         @lang('crud.common.back')
                     </a>
 
-                    <a
-                        href="{{ route('settings.create') }}"
-                        class="btn btn-light"
-                    >
-                        <i class="icon ion-md-add text-primary"></i>
-                        @lang('crud.common.create')
-                    </a>
-
                     <button type="submit" class="btn btn-primary float-right">
                         <i class="icon ion-md-save"></i>
-                        @lang('crud.common.update')
+                        @lang('crud.common.create')
                     </button>
                 </div>
             </x-form>

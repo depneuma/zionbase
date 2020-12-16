@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SettingStoreRequest extends FormRequest
+class HeroStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class SettingStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'key' => ['required', 'unique:settings', 'max:255', 'string'],
-            'value' => ['nullable', 'max:255', 'string'],
-            'image' => ['nullable', 'file', 'max:2000', 'mimes:jpg,jpeg,png'],
+            'line_one' => ['required', 'max:27', 'string'],
+            'line_two' => ['required', 'max:35', 'string'],
+            'line_three' => ['required', 'max:150', 'string'],
+            'image' => ['nullable', 'file', 'mimes:jpg,jpeg,png', 'max:2000'],
         ];
     }
 }

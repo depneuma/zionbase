@@ -39,6 +39,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update sermons']);
         Permission::create(['name' => 'delete sermons']);
 
+        Permission::create(['name' => 'list heros']);
+        Permission::create(['name' => 'view heros']);
+        Permission::create(['name' => 'create heros']);
+        Permission::create(['name' => 'update heros']);
+        Permission::create(['name' => 'delete heros']);
+
         // Create user role and assign existing permissions
         $currentPermissions = Permission::all();
         $userRole = Role::create(['name' => 'user']);

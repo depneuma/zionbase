@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="col-md-5 d-flex align-items-stretch">
-                            <div class="info-wrap w-100 p-5 img" style="background-image: url({{ asset('images/about-3.jpg') }});">
+                            <div class="info-wrap w-100 p-5 img" style="background-image: url({{ \Storage::url(config('settings.church_about')) }});">
                             </div>
                         </div>
                     </div>

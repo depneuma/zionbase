@@ -3,29 +3,28 @@
         <div class="row">
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
                 <h2 class="footer-heading">{{ config('settings.church_name') }}</h2>
-                <p>{{ config('settings.church_description') }}
+                <p>{{ config('settings.church_mission') }}
                 </p>
                 <ul class="ftco-footer-social p-0">
-                    <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top"
+                    <li class="ftco-animate"><a href="{{ config('settings.social_twitter') }}" data-toggle="tooltip" data-placement="top"
                             title="Twitter"><span class="fa fa-twitter"></span></a></li>
-                    <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top"
+                    <li class="ftco-animate"><a href="{{ config('settings.social_facebook') }}" data-toggle="tooltip" data-placement="top"
                             title="Facebook"><span class="fa fa-facebook"></span></a></li>
-                    <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top"
+                    <li class="ftco-animate"><a href="{{ config('settings.social_instagram') }}" data-toggle="tooltip" data-placement="top"
                             title="Instagram"><span class="fa fa-instagram"></span></a></li>
+                </ul>
+                <p class="">OFFICIAL USE ONLY</p>
+                <ul class="list-unstyled">
+                    <li><a href="{{ route('login') }}" class="py-2 d-block">Admin Login</a></li>
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
                 <h2 class="footer-heading">Service Schedule</h2>
                 <div class="block-23 mb-3">
                     <ul>
-                        <li><span class="icon fa fa-map"></span><span class="text">S203 Fake St. Mountain View,
-                                San Francisco, California, USA</span></li>
-                        <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929
-                                    210</span></a></li>
-                        <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text"><span
-                                        class="__cf_email__"
-                                        data-cfemail="94fdfaf2fbd4edfbe1e6f0fbf9f5fdfabaf7fbf9">[email&#160;protected]</span></span></a>
-                        </li>
+                        <li><a href="#"><span class="icon fa fa-paper-plane"></span>
+                            <span class="text">{!! nl2br(e(config('settings.service_schedule') )) !!}</span></a></li>
+                        <li><span class="icon fa fa-map"></span><span class="text">{{ config('settings.church_address') }}</span></li>
                     </ul>
                 </div>
             </div>
@@ -43,41 +42,13 @@
             
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
                 <h2 class="footer-heading">Life News Articles</h2>
-                <div class="block-21 mb-4 d-flex">
-                    <a class="img mr-4 rounded" style="background-image: url({{ asset('images/image_1.jpg') }});"></a>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a>
-                        </h3>
-                        <div class="meta">
-                            <div><a href="#">Aug. 10, 2020</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#">19</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="block-21 mb-4 d-flex">
-                    <a class="img mr-4 rounded" style="background-image: url({{ asset('images/image_2.jpg') }});"></a>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a>
-                        </h3>
-                        <div class="meta">
-                            <div><a href="#">Aug. 10, 2020</a></div>
-                            <div><a href="#">Admin</a></div>
-                            <div><a href="#">19</a></div>
-                        </div>
-                    </div>
-                </div>
+                @livewire('footer-articles')
             </div>
         </div>
         <div class="row mt-5">
             <div class="col-md-12 text-center">
                 <p class="copyright">
-                    Copyright &copy;<script data-cfasync="false"
-                        src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="fa fa-heart"
-                        aria-hidden="true"></i> by <a href="https://colorlib.com/" target="_blank">Colorlib.com</a>
+                    Copyrights &copy; {{ date('Y').' '.config('settings.church_name') }}, All Rights Reserved. 
                 </p>
             </div>
         </div>

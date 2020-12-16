@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Traits\Base;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SettingStoreRequest;
 use App\Http\Requests\SettingUpdateRequest;
 
@@ -22,7 +23,6 @@ class SettingController extends Controller
         $search = $request->get('search', '');
 
         $settings = Setting::search($search)
-            ->latest()
             ->paginate();
 
         return view('app.settings.index', compact('settings', 'search'));
@@ -36,7 +36,8 @@ class SettingController extends Controller
     {
         $this->authorize('create', Setting::class);
 
-        return view('app.settings.create');
+        $setting = new Setting();
+        return view('app.settings.create', compact(['setting']));
     }
 
     /**
@@ -48,9 +49,16 @@ class SettingController extends Controller
         $this->authorize('create', Setting::class);
 
         $validated = $request->validated();
-
         $setting = Setting::create($validated);
 
+        if ($request->hasFile('image')) 
+        {
+            $validated['image'] = $request->file('image')->store('public');
+            Setting::set($validated['key'], $validated['image']);
+        } else {
+            Setting::set($validated['key'], $validated['value']);
+        }
+        
         return redirect()
             ->route('settings.edit', $setting)
             ->withSuccess(__('crud.common.created'));
@@ -88,10 +96,21 @@ class SettingController extends Controller
     public function update(SettingUpdateRequest $request, Setting $setting)
     {
         $this->authorize('update', $setting);
-
         $validated = $request->validated();
 
-        $setting->update($validated);
+        if ($request->hasFile('image')) 
+        {
+
+            if ( Setting::get($validated['key']) != "") {
+                Storage::delete(Setting::get($validated['key']));
+            }
+
+            $validated['image'] = $request->file('image')->store('public');
+            Setting::set($validated['key'], $validated['image']);
+
+        } else {
+            Setting::set($validated['key'], $validated['value']);
+        }
 
         return redirect()
             ->route('settings.edit', $setting)
@@ -106,6 +125,10 @@ class SettingController extends Controller
     public function destroy(Request $request, Setting $setting)
     {
         $this->authorize('delete', $setting);
+        
+        if ($setting->image) {
+            Storage::delete($setting->image);
+        }
 
         $setting->delete();
 

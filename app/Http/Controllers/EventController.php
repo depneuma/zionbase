@@ -22,7 +22,7 @@ class EventController extends Controller
         $search = $request->get('search', '');
 
         $events = Event::search($search)
-            ->latest()
+            ->orderBy('date_time')
             ->paginate();
 
         return view('app.events.index', compact('events', 'search'));

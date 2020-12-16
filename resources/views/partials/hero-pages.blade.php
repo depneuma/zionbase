@@ -1,4 +1,23 @@
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ asset('images/bg_1.jpg') }});">
+@switch(Route::currentRouteName())
+    @case('pages.about')
+        <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ \Storage::url(config('settings.pages_about')) }});">
+        @break
+    @case('pages.sermons')
+        <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ \Storage::url(config('settings.pages_sermons')) }});">
+        @break 
+    @case('pages.events')
+        <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ \Storage::url(config('settings.pages_events')) }});">
+        @break   
+    @case('pages.blogs')
+        <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ \Storage::url(config('settings.pages_blogs')) }});">
+        @break    
+    @case('pages.blogs.show')
+        <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ \Storage::url($blog->image) }});">
+        @break    
+    @case('pages.contact')
+        <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({{ \Storage::url(config('settings.pages_contact')) }});">
+        @break         
+@endswitch
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end">

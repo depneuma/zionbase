@@ -1,30 +1,34 @@
-@php $editing = isset($blog) @endphp
+@php $editing = isset($hero) @endphp
 
 <div class="row">
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
-        <x-inputs.select name="user_id" label="Author" required>
-            @php $selected = old('user_id', ($editing ? $blog->user_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the User</option>
-            @foreach($users as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-            @endforeach
-        </x-inputs.select>
-    </x-inputs.group>
-
-    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
         <x-inputs.text
-            name="title"
-            label="Title"
-            value="{{ old('title', ($editing ? $blog->title : '')) }}"
-            maxlength="255"
+            name="line_one"
+            label="Line One"
+            value="{{ old('line_one', ($editing ? $hero->line_one : '')) }}"
+            maxlength="27"
             required
         ></x-inputs.text>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
-        <x-inputs.textarea name="body" label="Body" maxlength="10000" required
-            >{{ old('body', ($editing ? $blog->body : '')) }}</x-inputs.textarea
-        >
+        <x-inputs.text
+            name="line_two"
+            label="Line Two"
+            value="{{ old('line_two', ($editing ? $hero->line_two : '')) }}"
+            maxlength="35"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
+        <x-inputs.text
+            name="line_three"
+            label="Line Three"
+            value="{{ old('line_three', ($editing ? $hero->line_three : '')) }}"
+            maxlength="150"
+            required
+        ></x-inputs.text>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
@@ -58,7 +62,7 @@
     /* Alpine component for image uploader viewer */
     function imageComponentData() {
         return {
-            imageDataUrl: '{{ $editing && $blog->image ? \Storage::url($blog->image) : '' }}',
+            imageDataUrl: '{{ $editing && $hero->image ? \Storage::url($hero->image) : '' }}',
 
             fileChanged(event) {
                 fileToDataUrl(event, src => this.imageDataUrl = src)

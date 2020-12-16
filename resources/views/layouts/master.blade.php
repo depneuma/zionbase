@@ -5,8 +5,8 @@
         <title>@yield('title', config('settings.church_name'))</title>
         
         <!-- FAVICONS ICON -->
-        <link rel="icon" href="{{ asset('storage/'.config('settings.site_favicon')) }}" type="image/x-icon" />
-        <link rel="shortcut icon" href="{{ asset('storage/'.config('settings.site_favicon')) }}" type="image/x-icon" />
+        <link rel="icon" href="{{ \Storage::url(config('settings.site_favicon')) }}" type="image/x-icon" />
+        <link rel="shortcut icon" href="{{ \Storage::url(config('settings.site_favicon')) }}" type="image/x-icon" />
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="{{ asset('css/jquery.timepicker.css') }}">
         <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        @livewireStyles
     </head>
 
     <body>
@@ -62,6 +63,7 @@
         </script>
         <script src="{{ asset('js/google-map.js') }}"></script>
         <script src="{{ asset('js/main.js') }}"></script>
+        @livewireScripts
     </body>
 
 </html>

@@ -38,6 +38,7 @@ class EventStoreRequest extends FormRequest
             'description' => ['required', 'max:255', 'string'],
             'schedule' => ['required', 'max:255', 'string'],
             'venue' => ['required', 'max:255', 'string'],
+            'address' => ['required', 'max:255', 'string'],
             'date_time' => ['required', 'date', 'date'],
         ];
     }

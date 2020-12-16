@@ -17,6 +17,7 @@ class Event extends Model
         'date_time',
         'schedule',
         'venue',
+        'address',
         'cover',
         'rsvp_one_id',
         'rsvp_two_id',
@@ -34,7 +35,7 @@ class Event extends Model
         return $this->hasMany(Sermon::class);
     }
 
-    public function thridRsvp()
+    public function thirdRsvp()
     {
         return $this->belongsTo(User::class, 'rsvp_three_id');
     }

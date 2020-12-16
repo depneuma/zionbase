@@ -22,6 +22,8 @@ class User extends Authenticatable
         'title',
         'office',
         'name',
+        'mobile',
+        'about',
         'email',
         'avatar',
         'password',
@@ -29,8 +31,10 @@ class User extends Authenticatable
 
     protected $searchableFields = ['*'];
 
-    protected $hidden = ['password', 'remember_token', 'two_factor_recovery_codes',
-    'two_factor_secret',];
+    protected $hidden = [
+        'password', 'remember_token', 'two_factor_recovery_codes',
+        'two_factor_secret',
+    ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -41,9 +45,13 @@ class User extends Authenticatable
      *
      * @var array
      */
-//     protected $appends = [
-//         'profile_photo_url',
-//     ];
+    //     protected $appends = [
+    //         'profile_photo_url',
+    //     ];
+    public function getNicknameAttribute()
+    {
+        return $this->title.' '.preg_replace("/^(\w+\s)/", "", $this->name);   
+    }
 
     public function blogs()
     {

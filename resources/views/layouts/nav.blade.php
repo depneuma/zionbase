@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-2">
     <div class="container">
 
-        <a class="navbar-brand text-primary font-weight-bold text-uppercase" href="{{ url('/') }}">
+        <a class="navbar-brand text-primary font-weight-bold text-uppercase" href="{{ route('pages.welcome') }}">
             {{ config('app.name', 'Church') }}
         </a>
 
@@ -26,6 +26,9 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         @can('view-any', App\Models\User::class)
                         <a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
+                        @endcan
+                        @can('view-any', App\Models\Heror::class)
+                        <a class="dropdown-item" href="{{ route('heros.index') }}">Heros</a>
                         @endcan
                         @can('view-any', App\Models\Blog::class)
                         <a class="dropdown-item" href="{{ route('blogs.index') }}">Blogs</a>

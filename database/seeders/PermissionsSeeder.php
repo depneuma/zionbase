@@ -39,6 +39,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update sermons']);
         Permission::create(['name' => 'delete sermons']);
 
+        Permission::create(['name' => 'list subscriptions']);
+        Permission::create(['name' => 'view subscriptions']);
+        Permission::create(['name' => 'create subscriptions']);
+        Permission::create(['name' => 'update subscriptions']);
+        Permission::create(['name' => 'delete subscriptions']);
+
         Permission::create(['name' => 'list heros']);
         Permission::create(['name' => 'view heros']);
         Permission::create(['name' => 'create heros']);

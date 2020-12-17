@@ -2,6 +2,7 @@
 
 @section('content')
 <section class="ftco-section">
+    @include('partials.subscribe')
     <div class="container">
         <div class="row">
             @foreach ($events as $event)
@@ -43,4 +44,5 @@
         </div>
     </div>
 </section>
+@include('partials.subscribe')
 @endsection

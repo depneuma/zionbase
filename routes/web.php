@@ -10,6 +10,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\SermonController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::prefix('pages')->group(function () {
     Route::get('/blogs/{slug}', [PageController::class, 'showBlog',])->name('pages.blogs.show');
     Route::get('/events', [PageController::class, 'events'])->name('pages.events');
     Route::get('/contact', [PageController::class, 'contact'])->name('pages.contact');
+    Route::post('/subscribe', [PageController::class, 'subscribe'])->name('subscribe');
 });
 
 Route::prefix('/')
@@ -100,5 +102,15 @@ Route::prefix('/')
             Route::get('/{sermon}/edit', [SermonController::class,'edit'])->name('sermons.edit');
             Route::put('/{sermon}', [SermonController::class,'update'])->name('sermons.update');
             Route::delete('/{sermon}', [SermonController::class,'destroy'])->name('sermons.destroy');
+        });
+
+        Route::prefix('subscriptions')->group(function () { 
+            Route::get('/', [SubscriptionController::class, 'index'])->name('subscriptions.index');
+            Route::post('/', [SubscriptionController::class, 'store'])->name('subscriptions.store');
+            Route::get('/create', [SubscriptionController::class, 'create'])->name('subscriptions.create');
+            Route::get('/{subscription}', [SubscriptionController::class, 'show'])->name('subscriptions.show');
+            Route::get('/{subscription}/edit', [SubscriptionController::class,'edit'])->name('subscriptions.edit');
+            Route::put('/{subscription}', [SubscriptionController::class,'update'])->name('subscriptions.update');
+            Route::delete('/{subscription}', [SubscriptionController::class,'destroy'])->name('subscriptions.destroy');
         });
     });

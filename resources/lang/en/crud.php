@@ -115,6 +115,17 @@ return [
         ],
     ],
 
+    'subscriptions' => [
+        'name' => 'Subscriptions',
+        'index_title' => 'Subscriptions List',
+        'create_title' => 'Create Subscription',
+        'edit_title' => 'Edit Subscription',
+        'show_title' => 'Show Subscription',
+        'inputs' => [
+            'email' => 'Email',
+        ],
+    ],
+
     'roles' => [
         'name' => 'Roles',
         'index_title' => 'Roles List',

@@ -2,6 +2,7 @@
 
 @section('content')
 <section class="ftco-section">
+    @include('partials.subscribe')
     <div class="container">
         <div class="row d-flex">
             @foreach ($blogs as $blog)
@@ -34,4 +35,5 @@
         </div>
     </div>
 </section>
+@include('partials.subscribe')
 @endsection

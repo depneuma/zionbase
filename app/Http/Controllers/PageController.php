@@ -9,7 +9,10 @@ use App\Traits\Base;
 use App\Models\Event;
 use App\Models\Sermon;
 use App\Models\Setting;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\SubscriptionStoreRequest;
 
 class PageController extends Controller
 {
@@ -78,6 +81,15 @@ class PageController extends Controller
             ->paginate()->forget($blog->id);
         $this->setPageTitle('Article', $blog->title);
         return view('pages.blog', compact(['blog', 'blogs', 'search'])); 
+    }
+
+    public function subscribe(SubscriptionStoreRequest $request)
+    {
+        $validated = $request->validated();
+
+        $subscription = Subscription::firstOrCreate($validated);
+        Alert::toast('Your subscription was successful!','success');
+        return redirect()->back();
     }
 
     public function contact()

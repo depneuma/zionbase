@@ -42,6 +42,9 @@
                         @can('view-any', App\Models\Setting::class)
                         <a class="dropdown-item" href="{{ route('settings.index') }}">Settings</a>
                         @endcan
+                        @can('view-any', App\Models\Subscription::class)
+                        <a class="dropdown-item" href="{{ route('subscriptions.index') }}">Subscriptions</a>
+                        @endcan
                     </div>
 
                 </li>

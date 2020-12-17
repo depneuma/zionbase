@@ -25,9 +25,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SettingSeeder::class);
         $this->call(HeroSeeder::class);
         
-        // $this->call(UserSeeder::class);
-        // $this->call(BlogSeeder::class);
-        // $this->call(EventSeeder::class);
-        // $this->call(SermonSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(BlogSeeder::class);
+        $this->call(EventSeeder::class);
+        $this->call(SermonSeeder::class);
+        $this->call(SubscriptionSeeder::class);
     }
 }

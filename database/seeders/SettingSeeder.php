@@ -62,7 +62,7 @@ class SettingSeeder extends Seeder
         ],
         [
             'key'                       =>  'service_schedule',
-            'value'                     =>  '',
+            'value'                     =>  'Sundays | 8:00am - 10:00am, Wednesdays | 5:00pm - 6:30pm, Fridays | 5:00pm - 6:00pm',
         ],
         [
             'key'                       =>  'domain_name',

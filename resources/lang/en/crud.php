@@ -13,6 +13,8 @@ return [
         'created' => 'Successfully created',
         'saved' => 'Saved successfully',
         'removed' => 'Successfully removed',
+        'notify' => 'Notify Subscribers',
+        'notified' => 'Subscribers notified successfully',
     ],
 
     'users' => [

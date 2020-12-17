@@ -1,5 +1,6 @@
 <?php
 
+use App\Notifications\Subscribed;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HeroController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\SermonController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SubscriptionController;
+use App\Models\Subscription;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,12 @@ use App\Http\Controllers\SubscriptionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/preview', function () {
+    $user = Subscription::find(1);
+    return (new Subscribed($user))
+                ->toMail($user);
+});
 
 Route::get('/', [PageController::class, 'welcome'])->name('pages.welcome');
 
@@ -79,6 +87,7 @@ Route::prefix('/')
             Route::post('/', [EventController::class, 'store'])->name('events.store');
             Route::get('/create', [EventController::class, 'create'])->name('events.create');
             Route::get('/{event}', [EventController::class, 'show'])->name('events.show');
+            Route::post('/notify', [EventController::class, 'notify'])->name('events.notify');
             Route::get('/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
             Route::put('/{event}', [EventController::class, 'update'])->name('events.update');
             Route::delete('/{event}', [EventController::class, 'destroy'])->name('events.destroy');

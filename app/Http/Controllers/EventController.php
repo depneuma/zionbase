@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
+use App\Notifications\EventAtHand;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\EventStoreRequest;
 use App\Http\Requests\EventUpdateRequest;
+use Illuminate\Support\Facades\Notification;
 
 class EventController extends Controller
 {
@@ -131,5 +134,22 @@ class EventController extends Controller
         return redirect()
             ->route('events.index')
             ->withSuccess(__('crud.common.removed'));
+    }
+
+    /**
+     * @param \App\Http\Requests\EventStoreRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function notify(Request $request, Event $event)
+    {
+        $this->authorize('notify', Event::class);
+        $users = User::all();
+        $subscribers = Subscription::all();
+
+        Notification::send($users->merge($subscribers), new EventAtHand($event));
+
+        return redirect()
+            ->back()
+            ->withSuccess(__('crud.common.notified'));
     }
 }

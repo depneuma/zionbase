@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Traits\Base;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use App\Notifications\Subscribed;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SubscriptionStoreRequest;
 use App\Http\Requests\SubscriptionUpdateRequest;
@@ -49,11 +51,15 @@ class SubscriptionController extends Controller
         $this->authorize('create', Subscription::class);
 
         $validated = $request->validated();
-
-        $subscription = Subscription::firstOrCreate($validated);
+        $isUser = User::where('email', $validated['email'])->first();
+        
+        if (!$isUser) {
+            $subscriber = Subscription::firstOrCreate($validated);
+            $subscriber->notify(new Subscribed());
+        }
         
         return redirect()
-            ->route('subscriptions.edit', $subscription)
+            ->route('subscriptions.edit', $subscriber)
             ->withSuccess(__('crud.common.created'));
     }
 

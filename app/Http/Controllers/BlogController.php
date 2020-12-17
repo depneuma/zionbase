@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\User;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Http\Requests\BlogStoreRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\BlogUpdateRequest;
+use App\Notifications\BlogPostCreated;
+use Illuminate\Support\Facades\Notification;
 
 class BlogController extends Controller
 {
@@ -55,6 +58,10 @@ class BlogController extends Controller
         }
 
         $blog = Blog::create($validated);
+
+        $users = User::all();
+        $subscribers = Subscription::all();
+        Notification::send($users->merge($subscribers), new BlogPostCreated($blog));
 
         return redirect()
             ->route('blogs.edit', $blog)

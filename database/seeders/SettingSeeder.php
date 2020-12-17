@@ -21,8 +21,12 @@ class SettingSeeder extends Seeder
             'value'                     =>  'Shammah Divine Zion Ministry',
         ],
         [
-            'key'                       =>  'pastor_title',
+            'key'                       =>  'owner_title',
             'value'                     =>  'Senior Pastor',
+        ],
+        [
+            'key'                       =>  'default_password',
+            'value'                     =>  'password',
         ],
         [
             'key'                       =>  'church_mission',

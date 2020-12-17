@@ -15,7 +15,7 @@ class SermonSeeder extends Seeder
     public function run()
     {
         Sermon::factory()
-            ->count(5)
+            ->count(20)
             ->create();
     }
 }

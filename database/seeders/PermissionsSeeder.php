@@ -13,6 +13,9 @@ class PermissionsSeeder extends Seeder
     {
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
+        
+        // Create user role and assign existing permissions
+        $userRole = Role::create(['name' => 'user']);
 
         // Create default permissions
         Permission::create(['name' => 'list blogs']);
@@ -21,17 +24,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update blogs']);
         Permission::create(['name' => 'delete blogs']);
 
-        Permission::create(['name' => 'list settings']);
-        Permission::create(['name' => 'view settings']);
-        Permission::create(['name' => 'create settings']);
-        Permission::create(['name' => 'update settings']);
-        Permission::create(['name' => 'delete settings']);
-
         Permission::create(['name' => 'list events']);
         Permission::create(['name' => 'view events']);
         Permission::create(['name' => 'create events']);
         Permission::create(['name' => 'update events']);
         Permission::create(['name' => 'delete events']);
+        Permission::create(['name' => 'notify events']);
 
         Permission::create(['name' => 'list sermons']);
         Permission::create(['name' => 'view sermons']);
@@ -51,12 +49,19 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update heros']);
         Permission::create(['name' => 'delete heros']);
 
-        // Create user role and assign existing permissions
+        // Create admin role and assign existing permissions
         $currentPermissions = Permission::all();
-        $userRole = Role::create(['name' => 'user']);
-        $userRole->givePermissionTo($currentPermissions);
+        $adminRole = Role::create(['name' => 'admin']);
+        $adminRole->givePermissionTo($currentPermissions);
 
         // Create admin exclusive permissions
+
+        Permission::create(['name' => 'list settings']);
+        Permission::create(['name' => 'view settings']);
+        Permission::create(['name' => 'create settings']);
+        Permission::create(['name' => 'update settings']);
+        Permission::create(['name' => 'delete settings']);
+
         Permission::create(['name' => 'list roles']);
         Permission::create(['name' => 'view roles']);
         Permission::create(['name' => 'create roles']);
@@ -77,13 +82,13 @@ class PermissionsSeeder extends Seeder
 
         // Create admin role and assign all permissions
         $allPermissions = Permission::all();
-        $adminRole = Role::create(['name' => 'super-admin']);
-        $adminRole->givePermissionTo($allPermissions);
+        $superAdminRole = Role::create(['name' => 'super-admin']);
+        $superAdminRole->givePermissionTo($allPermissions);
 
         $user = \App\Models\User::whereEmail('admin@admin.com')->first();
 
         if ($user) {
-            $user->assignRole($adminRole);
+            $user->assignRole($superAdminRole);
         }
     }
 }

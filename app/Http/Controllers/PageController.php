@@ -11,6 +11,7 @@ use App\Models\Sermon;
 use App\Models\Setting;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use App\Notifications\Subscribed;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\SubscriptionStoreRequest;
 
@@ -43,7 +44,7 @@ class PageController extends Controller
 
     public function about()
     {
-        $founder = User::where('title', Setting::get('pastor_title'))->first() ?? User::first();
+        $founder = User::where('title', Setting::get('owner_title'))->first() ?? User::first();
         $leaders = User::where('title', 'Pastor')->get()->forget($founder->id);
         $this->setPageTitle('About Us', 'About ' . config('settings.church_name'));
         return view('pages.about', compact(['founder', 'leaders']));
@@ -86,9 +87,14 @@ class PageController extends Controller
     public function subscribe(SubscriptionStoreRequest $request)
     {
         $validated = $request->validated();
-
-        $subscription = Subscription::firstOrCreate($validated);
-        Alert::toast('Your subscription was successful!','success');
+        $isUser = User::where('email', $validated['email'])->first();
+        
+        if (!is_null($isUser)) {
+            $subscriber = Subscription::firstOrCreate($validated);
+            $subscriber->notify(new Subscribed());
+        }
+        
+        Alert::toast('You have subscribed successfully!','success');
         return redirect()->back();
     }
 

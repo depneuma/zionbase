@@ -2,7 +2,7 @@
     <div class="container">
 
         <a class="navbar-brand text-primary font-weight-bold text-uppercase" href="{{ route('pages.welcome') }}">
-            {{ config('app.name', 'Church') }}
+            {{ config('settings.domain_name', 'Church') }}
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -27,7 +27,7 @@
                         @can('view-any', App\Models\User::class)
                         <a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
                         @endcan
-                        @can('view-any', App\Models\Heror::class)
+                        @can('view-any', App\Models\Hero::class)
                         <a class="dropdown-item" href="{{ route('heros.index') }}">Heros</a>
                         @endcan
                         @can('view-any', App\Models\Blog::class)
@@ -92,9 +92,6 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('profile.edit') }}">
                             {{ __('Profile') }}
-                        </a>
-                        <a class="dropdown-item" href="{{ route('settings.index') }}">
-                            {{ __('Settings') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

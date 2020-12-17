@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Sermon;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SermonStoreRequest;
 use App\Http\Requests\SermonUpdateRequest;
+use App\Notifications\SermonUploaded;
+use Illuminate\Support\Facades\Notification;
 
 class SermonController extends Controller
 {
@@ -65,6 +68,10 @@ class SermonController extends Controller
         }
 
         $sermon = Sermon::create($validated);
+
+        $users = User::all();
+        $subscribers = Subscription::all();
+        Notification::send($users->merge($subscribers), new SermonUploaded($sermon));
 
         return redirect()
             ->route('sermons.edit', $sermon)

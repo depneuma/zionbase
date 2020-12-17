@@ -69,6 +69,18 @@ class EventPolicy
     }
 
     /**
+     * Determine whether the event can notify subsribers.
+     *
+     * @param  App\Models\User  $user
+     * @param  App\Models\Event  $model
+     * @return mixed
+     */
+    public function notify(User $user, Event $model)
+    {
+        return $user->hasPermissionTo('notify events');
+    }
+
+    /**
      * Determine whether the event can restore the model.
      *
      * @param  App\Models\User  $user

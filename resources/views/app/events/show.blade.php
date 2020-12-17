@@ -5,13 +5,25 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">
-                <a href="{{ route('events.index') }}" class="mr-4"
-                    ><i class="icon ion-md-arrow-back"></i
-                ></a>
+                <a href="{{ route('events.index') }}" class="mr-4"><i class="icon ion-md-arrow-back"></i></a>
                 @lang('crud.events.show_title')
             </h4>
 
             <div class="mt-4">
+                <div class="col-md-6 text-right">
+                    @can('notify', $event)
+                    <form action="{{ route('events.notify', $event) }}" method="POST"
+                        onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
+                        @csrf @method('POST')
+                        <input type="text" name="id" value="{{ $event->id }}" hidden>
+                        <button type="submit" class="btn btn-success">
+                            <i class="icon ion-md-alarm"></i>
+                            @lang('crud.common.notify')
+                        </button>
+                    </form>
+                    @endcan
+
+                </div>
                 <div class="mb-4">
                     <h5>@lang('crud.events.inputs.rsvp_one_id')</h5>
                     <span>{{ optional($event->firstRsvp)->name ?? '-' }}</span>
@@ -26,10 +38,8 @@
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.events.inputs.cover')</h5>
-                    <img
-                        src="{{ $event->cover ? \Storage::url($event->cover) : '' }}"
-                        style="object-fit: cover; width: 150px; height: 150px; border: 1px solid #ccc;"
-                    />
+                    <img src="{{ $event->cover ? \Storage::url($event->cover) : '' }}"
+                        style="object-fit: cover; width: 150px; height: 150px; border: 1px solid #ccc;" />
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.events.inputs.title')</h5>

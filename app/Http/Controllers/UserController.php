@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserStoreRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\Subscription;
+use App\Notifications\UserCreated;
 
 class UserController extends Controller
 {
@@ -52,15 +55,22 @@ class UserController extends Controller
 
         $validated = $request->validated();
 
-        $validated['password'] = Hash::make($validated['password']);
+        $validated['password'] = Hash::make(Setting::get('default_password'));
 
         if ($request->hasFile('avatar')) {
             $validated['avatar'] = $request->file('avatar')->store('public');
         }
 
+        $isSubscriber = Subscription::where('email', $validated['email'])->first();
+        if (!is_null($isSubscriber)) {
+            $isSubscriber->delete();
+        }
+        
         $user = User::create($validated);
 
         $user->syncRoles($request->roles);
+
+        $user->notify(new UserCreated());
 
         return redirect()
             ->route('users.edit', $user)
@@ -116,6 +126,11 @@ class UserController extends Controller
             }
 
             $validated['avatar'] = $request->file('avatar')->store('public');
+        }
+
+        $isSubscriber = Subscription::where('email', $validated['email'])->first();
+        if (!is_null($isSubscriber)) {
+            $isSubscriber->delete();
         }
 
         $user->update($validated);

@@ -39,16 +39,17 @@
             maxlength="255"
             required
         ></x-inputs.text>
-    </x-inputs.group>
+    </x-inputs.group>    
 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
         <x-inputs.textarea
             name="about"
             label="About"
-            value="{{ old('about', ($editing ? $user->about : '')) }}"
             maxlength="255"
             required
-        ></x-inputs.textarea>
+            >{{ old('about', ($editing ? $user->about : ''))
+            }}</x-inputs.textarea
+        >
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">

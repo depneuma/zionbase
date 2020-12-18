@@ -30,7 +30,7 @@
                         <div class="col-md-3">
                             <div class="dbox w-100 text-center">
                                 <div class="icon bg-secondary d-flex align-items-center justify-content-center">
-                                    <span class="fa fa-phone"></span>
+                                    <span class="fa fa-envelope"></span>
                                 </div>
                                 <div class="text">
                                     <p><span>Email:</span> <a href="email://{{ config('settings.church_enail') }}">{{ config('settings.church_email') }}</a></p>

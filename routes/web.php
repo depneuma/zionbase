@@ -25,12 +25,6 @@ use App\Models\Subscription;
 |
 */
 
-Route::get('/preview', function () {
-    $user = Subscription::find(1);
-    return (new Subscribed($user))
-                ->toMail($user);
-});
-
 Route::get('/', [PageController::class, 'welcome'])->name('pages.welcome');
 
 Route::prefix('pages')->group(function () {

@@ -5,7 +5,7 @@
     @include('partials.subscribe')
     <div class="container">
         <div class="row">
-            @foreach ($events as $event)
+            @forelse ($events as $event)
             <div class="col-md-12 event-wrap d-md-flex ftco-animate">
                 <div class="img"
                     style="background-image: url({{ \Storage::url($event->cover) }});">
@@ -31,7 +31,12 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @empty 
+            <div class="text-center">
+                <h2>There Are No Upcoming Events At This Time</h2>
+                <p>Please subscribe, and we will keep you updated.</p>
+            </div>
+            @endforelse
         </div>
         <div class="row mt-5">
             <div class="col text-center">

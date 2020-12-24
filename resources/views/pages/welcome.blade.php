@@ -22,6 +22,7 @@
     </div>
 </section>
 
+@if ($event)
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center pb-5 mb-3">
@@ -30,8 +31,7 @@
                 <h2>Upcoming Event</h2>
             </div>
         </div>
-        <div class="row">
-            @if ($event)
+        <div class="row">            
             <div class="col-md-12 event-wrap d-md-flex ftco-animate">
                 <div class="img" style="background-image: url({{ \Storage::url($event->cover) }});">
                 </div>
@@ -52,11 +52,12 @@
                     </div>
                 </div>
             </div>
-            @endif
         </div>
     </div>
 </section>
+@endif
 
+@if (count($blogs) >= 3)
 <section class="ftco-section ftco-no-pt">
     <div class="container">
         <div class="row justify-content-center pb-5 mb-3">
@@ -89,5 +90,6 @@
         </div>
     </div>
 </section>
+@endif
 @include('partials.subscribe')
 @endsection

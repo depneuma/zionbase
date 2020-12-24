@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Setting;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
+use App\Notifications\UserCreated;
+use App\Notifications\UserUpdated;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserStoreRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserUpdateRequest;
-use App\Models\Subscription;
-use App\Notifications\UserCreated;
 
 class UserController extends Controller
 {
@@ -136,6 +137,8 @@ class UserController extends Controller
         $user->update($validated);
 
         $user->syncRoles($request->roles);
+
+        $user->notify(new UserUpdated());
 
         return redirect()
             ->route('users.edit', $user)

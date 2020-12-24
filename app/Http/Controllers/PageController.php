@@ -89,7 +89,7 @@ class PageController extends Controller
         $validated = $request->validated();
         $isUser = User::where('email', $validated['email'])->first();
         
-        if (!is_null($isUser)) {
+        if (is_null($isUser)) {
             $subscriber = Subscription::firstOrCreate($validated);
             $subscriber->notify(new Subscribed());
         }

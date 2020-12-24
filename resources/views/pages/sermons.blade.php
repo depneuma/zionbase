@@ -4,7 +4,7 @@
 <section class="ftco-section">
     @include('partials.subscribe')
     <div class="container">
-        @foreach ($sermons as $sermon)
+        @forelse ($sermons as $sermon)
         @if ($sn++ % 2 != 0)
         <div class="row no-gutters d-flex sermon-wrap ftco-animate bg-light">
             <div class="col-md-6 d-flex align-items-stretch js-fullheight ftco-animate">
@@ -64,7 +64,12 @@
             </div>
         </div>
         @endif
-        @endforeach
+        @empty 
+        <div class="text-center">
+            <h2>There Are No Sermons For Download At This Time</h2>
+            <p>Please subscribe, and we will keep you updated.</p>
+        </div>
+        @endforelse
         <div class="row mt-5">
             <div class="col text-center">
                 <div class="block-27">

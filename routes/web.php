@@ -1,6 +1,5 @@
 <?php
 
-use App\Notifications\Subscribed;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HeroController;
@@ -12,7 +11,6 @@ use App\Http\Controllers\SermonController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SubscriptionController;
-use App\Models\Subscription;
 
 /*
 |--------------------------------------------------------------------------

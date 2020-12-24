@@ -5,7 +5,7 @@
     @include('partials.subscribe')
     <div class="container">
         <div class="row d-flex">
-            @foreach ($blogs as $blog)
+            @forelse ($blogs as $blog)
             <div class="col-md-6 col-lg-4 d-flex ftco-animate">
                 <div class="blog-entry align-self-stretch">
                     <a href="blog-single.html" class="block-20" style="background-image: url({{ \Storage::url($blog->image) }});">
@@ -22,7 +22,12 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @empty 
+            <div class="text-center">
+                <h2>There Are No Articles At This Time</h2>
+                <p>Please subscribe, and we will keep you updated.</p>
+            </div>
+            @endforelse
         </div>
         <div class="row mt-5">
             <div class="col text-center">

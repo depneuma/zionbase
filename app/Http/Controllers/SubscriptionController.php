@@ -53,7 +53,7 @@ class SubscriptionController extends Controller
         $validated = $request->validated();
         $isUser = User::where('email', $validated['email'])->first();
         
-        if (!$isUser) {
+        if (is_null($isUser)) {
             $subscriber = Subscription::firstOrCreate($validated);
             $subscriber->notify(new Subscribed());
         }
@@ -97,7 +97,14 @@ class SubscriptionController extends Controller
         $this->authorize('update', $subscription);
         $validated = $request->validated();
         
-        $subscription->update($validated);
+        $isUser = User::where('email', $validated['email'])->first();
+        
+        if (is_null($isUser)) {
+            $subscription->update($validated);
+            $subscription->notify(new Subscribed());
+        } else {
+            $this->destroy($request, $subscription);
+        }
 
         return redirect()
             ->route('subscriptions.edit', $subscription)
@@ -112,10 +119,6 @@ class SubscriptionController extends Controller
     public function destroy(Request $request, Subscription $subscription)
     {
         $this->authorize('delete', $subscription);
-        
-        if ($subscription->image) {
-            Storage::delete($subscription->image);
-        }
 
         $subscription->delete();
 

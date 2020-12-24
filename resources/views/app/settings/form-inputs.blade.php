@@ -1,15 +1,27 @@
 @php $editing = isset($setting) @endphp
 
 <div class="row">
+    @if (Route::currentRouteName() == 'settings.edit')
+    <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
+        <x-inputs.text
+            label="Key"
+            name=""
+            value="{{ old('key', ($editing ? $setting->key : '')) }}"
+            maxlength="255"
+            disabled
+        ></x-inputs.text>
+    </x-inputs.group>
+    <input type="text" hidden name="key" value="{{ old('key', ($editing ? $setting->key : '')) }}">
+    @else 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
         <x-inputs.text
             name="key"
             label="Key"
             value="{{ old('key', ($editing ? $setting->key : '')) }}"
             maxlength="255"
-            disabled
         ></x-inputs.text>
     </x-inputs.group>
+    @endif
 
     <x-inputs.group class="col-sm-12 col-md-12 col-lg-12">
         <x-inputs.textarea name="value" label="Value" maxlength="255"

@@ -7,6 +7,7 @@
             label="Key"
             value="{{ old('key', ($editing ? $setting->key : '')) }}"
             maxlength="255"
+            disabled
         ></x-inputs.text>
     </x-inputs.group>
 

@@ -94,7 +94,7 @@ class PageController extends Controller
             $subscriber->notify(new Subscribed());
         }
         
-        Alert::toast('You have subscribed successfully!','success');
+        Alert::success('Success', 'You have subscribed successfully!');
         return redirect()->back();
     }
 
